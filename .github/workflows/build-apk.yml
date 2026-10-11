@@ -25,6 +25,14 @@ jobs:
         working-directory: android
     steps:
       - uses: actions/checkout@v4
+      - name: Package web files
+        working-directory: .
+        run: zip -r MosAIc-v5-web.zip web
+
+      - name: Package complete source
+        working-directory: .
+        run: zip -r MosAIc-v5-source.zip web android .github README.md .gitignore -x "android/.gradle/*" "android/app/build/*"
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -41,5 +49,19 @@ jobs:
         with:
           name: MosAIc-v5-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MosAIc-v5-web
+          path: MosAIc-v5-web.zip
+          if-no-files-found: error
+          retention-days: 14
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MosAIc-v5-source
+          path: MosAIc-v5-source.zip
           if-no-files-found: error
           retention-days: 14
