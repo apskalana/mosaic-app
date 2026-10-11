@@ -27,11 +27,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Package web files
         working-directory: .
-        run: zip -r MosAIc-v5-web.zip web
+        run: zip -r MosAIc-v5.1-web.zip web
 
       - name: Package complete source
         working-directory: .
-        run: zip -r MosAIc-v5-source.zip web android .github README.md .gitignore -x "android/.gradle/*" "android/app/build/*"
+        run: zip -r MosAIc-v5.1-source.zip web android .github README.md .gitignore -x "android/.gradle/*" "android/app/build/*"
 
       - uses: actions/setup-java@v4
         with:
@@ -47,21 +47,21 @@ jobs:
         run: ./gradlew --no-daemon --max-workers=2 assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: MosAIc-v5-debug-apk
+          name: MosAIc-v5.1-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 14
 
       - uses: actions/upload-artifact@v4
         with:
-          name: MosAIc-v5-web
-          path: MosAIc-v5-web.zip
+          name: MosAIc-v5.1-web
+          path: MosAIc-v5.1-web.zip
           if-no-files-found: error
           retention-days: 14
 
       - uses: actions/upload-artifact@v4
         with:
-          name: MosAIc-v5-source
-          path: MosAIc-v5-source.zip
+          name: MosAIc-v5.1-source
+          path: MosAIc-v5.1-source.zip
           if-no-files-found: error
           retention-days: 14
