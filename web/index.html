@@ -46,6 +46,20 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
 .toast{position:fixed;left:50%;bottom:90px;z-index:400;transform:translateX(-50%) translateY(12px);opacity:0;transition:.2s;background:#f5f3ff;color:#140f31;padding:11px 14px;border-radius:12px;font-size:11.5px;font-weight:900;max-width:min(90vw,420px);text-align:center}.toast.show{opacity:1;transform:translateX(-50%)}
 .onboard{position:fixed;inset:0;z-index:220;background:radial-gradient(circle at 20% 0,rgba(143,124,248,.27),transparent 34%),#090720;display:none;place-items:center;padding:17px;overflow:auto}.onboard.show{display:grid}.oncard{width:min(100%,440px);background:#121036;border:1px solid #322a69;border-radius:27px;padding:21px;box-shadow:0 28px 80px rgba(0,0,0,.4)}.oncard h1{font-size:34px;line-height:1.05;margin:15px 0 8px;letter-spacing:-1.1px}.oncard p{font-size:13px;line-height:1.55;color:#b8b3d2}.check{display:flex;gap:9px;align-items:flex-start;color:#dcd8ef;font-size:11.5px;line-height:1.45;margin:10px 0}.check input{accent-color:var(--mint);margin-top:3px}.link{border:0;background:none;color:#c2b5ff;padding:0;text-decoration:underline;font-weight:850}
 .legal{position:fixed;inset:0;z-index:300;background:#090720;display:none;flex-direction:column}.legal.open{display:flex}.legal-top{padding:13px 15px;border-bottom:1px solid #342b6c;background:#0d0a2b;display:flex;align-items:center;gap:8px}.legal-scroll{overflow:auto;padding:17px 15px 105px}.legal-section{background:#15113d;border:1px solid #332a69;border-radius:17px;padding:14px;margin-bottom:11px}.legal-section h3{margin:0 0 7px;font-size:15px}.legal-section p,.legal-section li{font-size:12.5px;line-height:1.55;color:#c9c5dd}.legal-bottom{position:fixed;bottom:0;left:0;right:0;background:#0d0a2b;border-top:1px solid #342b6c;padding:9px 13px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center}.legal-bottom>div{width:min(100%,470px);display:flex;gap:8px}.legal-bottom .btn{flex:1}
+
+.advanced-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.metric{background:#17123f;border:1px solid #352d71;border-radius:16px;padding:13px}.metric b{display:block;font-size:22px}.metric span{font-size:10.5px;color:#9f9ab9}
+.source-detail{display:flex;gap:12px;align-items:center}.source-logo{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-weight:950;background:#2a2368;border:1px solid #493d92}.source-meta{min-width:0;flex:1}.source-meta b{display:block}.source-meta .small{margin-top:2px}
+.progress{height:8px;background:#171239;border-radius:999px;overflow:hidden;border:1px solid #302863}.progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--lav));border-radius:999px}
+.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.help-search{display:flex;gap:8px;margin:13px 0}.help-search input{flex:1}
+.faq{border:1px solid #393073;background:#1c1749;border-radius:15px;margin:9px 0;overflow:hidden}.faq-q{width:100%;border:0;background:transparent;color:white;padding:13px 14px;text-align:left;display:flex;justify-content:space-between;gap:10px;font-weight:850}.faq-a{padding:0 14px 14px;color:#bdb8d4;font-size:12px;line-height:1.55}.support-card{display:flex;align-items:center;gap:12px}.support-icon{width:42px;height:42px;border-radius:12px;background:#282162;display:grid;place-items:center;font-size:19px}
+.blocked-card{display:flex;align-items:flex-start;gap:12px}.blocked-card .avatar{flex:0 0 auto}.blocked-main{flex:1;min-width:0}.blocked-actions{display:flex;gap:7px;margin-top:9px}
+.score-ring{width:78px;height:78px;border-radius:50%;background:conic-gradient(var(--mint) 0 92%,#2b2457 92% 100%);display:grid;place-items:center}.score-ring:after{content:"";position:absolute}.score-inner{width:61px;height:61px;border-radius:50%;background:#17123f;display:grid;place-items:center;text-align:center;font-weight:950;font-size:18px}
+.mode-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mode-btn{border:1px solid #413783;background:#211a58;color:#fff;border-radius:11px;padding:10px 6px;font-size:10.5px;font-weight:850}.mode-btn.active{background:var(--mint);color:#082019;border-color:transparent}
+.status-line{display:flex;align-items:center;gap:7px;font-size:11px;color:#aaa5c5}.dot{width:8px;height:8px;border-radius:50%;background:#777}.dot.on{background:var(--mint);box-shadow:0 0 0 4px rgba(66,222,192,.10)}
+.ticket{background:#17123f;border:1px dashed #51479a;border-radius:13px;padding:11px;font-size:11px}
+
 @media(min-width:700px){body{padding:20px 0}.shell{min-height:calc(100vh - 40px);border:1px solid #302763;border-radius:28px;overflow:hidden}.nav{bottom:20px;border-radius:0 0 28px 28px}}
 </style>
 </head>
@@ -177,11 +191,22 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
    </div>
 
    <div class="card">
+    <div class="section-title">Recommendation controls</div>
+    <div class="small">Choose how MosAIc balances familiar interests with new perspectives.</div>
+    <div class="mode-row" style="margin-top:12px">
+     <button class="mode-btn" data-mode="similar" onclick="setDiscoveryMode(this,'similar')">More familiar</button>
+     <button class="mode-btn active" data-mode="balanced" onclick="setDiscoveryMode(this,'balanced')">Balanced</button>
+     <button class="mode-btn" data-mode="explore" onclick="setDiscoveryMode(this,'explore')">Explore</button>
+    </div>
+    <div class="callout good" id="modeExplain" style="margin-top:11px">Balanced mode mixes shared interests with complementary skills and some new perspectives.</div>
+   </div>
+
+   <div class="card">
     <div class="section-title">Connected sources</div>
     <div class="setting-row"><div><b>Instagram</b><div class="small">Synthetic interests in this demo.</div></div><span class="badge mint">Connected</span></div>
     <div class="setting-row"><div><b>TikTok</b><div class="small">Synthetic interests in this demo.</div></div><span class="badge mint">Connected</span></div>
     <div class="setting-row"><div><b>LinkedIn</b><div class="small">Synthetic career profile.</div></div><span class="badge mint">Connected</span></div>
-    <button class="btn ghost full" style="margin-top:12px" onclick="toast('Connection manager opened (demo)')">Manage sources</button>
+    <button class="btn ghost full" style="margin-top:12px" onclick="show('sourceManager')">Manage sources</button>
    </div>
 
    <div class="card">
@@ -194,12 +219,76 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
 
    <div class="card">
     <div class="section-title">Safety & support</div>
-    <button class="setting-link setting-row" onclick="toast('Blocked users list opened (demo)')"><div><b>Blocked users</b><div class="small">Review people you have blocked.</div></div><span>›</span></button>
-    <button class="setting-link setting-row" onclick="toast('Help centre opened (demo)')"><div><b>Help centre</b><div class="small">Safety, privacy and account support.</div></div><span>›</span></button>
-    <button class="setting-link setting-row" onclick="showAbout()"><div><b>About MosAIc</b><div class="small">Version 3.0 · university prototype.</div></div><span>›</span></button>
+    <button class="setting-link setting-row" onclick="show('blockedUsers')"><div><b>Blocked users</b><div class="small">Review, unblock and manage safety actions.</div></div><span>›</span></button>
+    <button class="setting-link setting-row" onclick="show('helpCenter')"><div><b>Help centre</b><div class="small">FAQs, support tickets and safety reporting.</div></div><span>›</span></button>
+    <button class="setting-link setting-row" onclick="show('safetyCenter')"><div><b>Safety centre</b><div class="small">Review your safety setup and controls.</div></div><span>›</span></button>
+    <button class="setting-link setting-row" onclick="showAbout()"><div><b>About MosAIc</b><div class="small">Version 4.0 · advanced university prototype.</div></div><span>›</span></button>
    </div>
 
    <button class="btn danger full" onclick="logout()">Log out</button>
+  </section>
+
+
+  <section id="sourceManager" class="screen">
+   <div class="chat-top"><button class="back" onclick="show('settings')">‹</button><div><b>Connected sources</b><div class="small">Choose what MosAIc can use for recommendations</div></div></div>
+   <div class="card">
+    <div class="row between"><div><div class="section-title" style="margin-bottom:4px">Data minimisation</div><div class="small">This advanced demo stores broad synthetic interest signals, not full social histories.</div></div><span class="badge mint">Privacy-first</span></div>
+    <div class="advanced-grid" style="margin-top:13px"><div class="metric"><b id="connectedCount">3</b><span>connected sources</span></div><div class="metric"><b id="signalCount">9</b><span>interest signals</span></div></div>
+   </div>
+   <div id="sourceList"></div>
+   <div class="action-grid">
+    <button class="btn secondary" onclick="refreshSources()">Refresh demo data</button>
+    <button class="btn" onclick="openAddSource()">Add source</button>
+   </div>
+   <div class="callout warn" style="margin-top:13px"><b>Production note:</b> real connections would use official OAuth/API permissions. MosAIc should never ask users for social-media passwords or session cookies.</div>
+  </section>
+
+  <section id="blockedUsers" class="screen">
+   <div class="chat-top"><button class="back" onclick="show('settings')">‹</button><div><b>Blocked users</b><div class="small">People you have removed from matching and messaging</div></div></div>
+   <div class="card">
+    <div class="row between"><div><div class="section-title" style="margin-bottom:4px">Your safety controls</div><div class="small">Blocked profiles cannot appear in your groups or send you messages in this demo.</div></div><span class="badge mint" id="blockedCountBadge">2 blocked</span></div>
+   </div>
+   <div id="blockedList"></div>
+   <button class="btn ghost full" onclick="addDemoBlocked()">Add demo blocked profile</button>
+  </section>
+
+  <section id="helpCenter" class="screen">
+   <div class="chat-top"><button class="back" onclick="show('settings')">‹</button><div><b>Help centre</b><div class="small">Support for account, privacy, events and safety</div></div></div>
+   <div class="help-search"><input id="helpSearch" class="input" placeholder="Search help topics" oninput="filterHelp()"><button class="btn sm" onclick="filterHelp()">Search</button></div>
+   <div class="advanced-grid">
+    <button class="card no-shadow setting-link support-card" onclick="openSupportForm('account')"><div class="support-icon">👤</div><div><b>Account help</b><div class="small">Login, profile and settings</div></div></button>
+    <button class="card no-shadow setting-link support-card" onclick="openSupportForm('safety')"><div class="support-icon">🛡</div><div><b>Safety report</b><div class="small">Harassment, scams or concern</div></div></button>
+   </div>
+   <div class="section-title" style="margin-top:14px">Frequently asked questions</div>
+   <div id="faqList">
+    <div class="faq" data-search="location sharing privacy find each other"><button class="faq-q" onclick="toggleFaq(this)">How does location sharing work?<span>＋</span></button><div class="faq-a hidden">RSVP never turns location on. You explicitly start temporary sharing, only the matched group can see the demo position, and the timer automatically stops it.</div></div>
+    <div class="faq" data-search="social media sources instagram tiktok linkedin privacy"><button class="faq-q" onclick="toggleFaq(this)">Does MosAIc read my whole social account?<span>＋</span></button><div class="faq-a hidden">No in this prototype. It uses synthetic broad interests. A production version should request only authorised data and minimise retention of raw histories.</div></div>
+    <div class="faq" data-search="job career apply application review"><button class="faq-q" onclick="toggleFaq(this)">Does “Apply for me” submit jobs automatically?<span>＋</span></button><div class="faq-a hidden">No. It prepares a draft. You review the role, CV information and answers before anything could be submitted.</div></div>
+    <div class="faq" data-search="matching algorithm recommendations why matched"><button class="faq-q" onclick="toggleFaq(this)">How are groups recommended?<span>＋</span></button><div class="faq-a hidden">The demo combines shared interests, availability, preferences and a diversity setting. It is a transparent prototype score, not a guarantee of compatibility.</div></div>
+   </div>
+   <div class="card">
+    <div class="section-title">Need more help?</div>
+    <div class="action-grid"><button class="btn secondary" onclick="openSupportForm('general')">Contact support</button><button class="btn danger" onclick="openSupportForm('safety')">Report safety issue</button></div>
+    <div id="lastTicket" class="ticket hidden" style="margin-top:11px"></div>
+   </div>
+  </section>
+
+  <section id="safetyCenter" class="screen">
+   <div class="chat-top"><button class="back" onclick="show('settings')">‹</button><div><b>Safety centre</b><div class="small">Your current safety and privacy setup</div></div></div>
+   <div class="card">
+    <div class="row gap"><div class="score-ring"><div class="score-inner">92</div></div><div><div class="section-title" style="margin-bottom:4px">Strong safety setup</div><div class="small">Key controls are enabled. The score is a presentation aid, not a security certification.</div></div></div>
+   </div>
+   <div class="card">
+    <div class="section-title">Protection checklist</div>
+    <div class="setting-row"><div><b>Location off by default</b><div class="small">Sharing starts only after explicit consent.</div></div><span class="badge mint">On</span></div>
+    <div class="setting-row"><div><b>Explainable recommendations</b><div class="small">Users can see why interests and matches appear.</div></div><span class="badge mint">On</span></div>
+    <div class="setting-row"><div><b>Block & report controls</b><div class="small">Safety actions are available from settings.</div></div><span class="badge mint">On</span></div>
+    <div class="setting-row"><div><b>Production authentication</b><div class="small">Not implemented in this university prototype.</div></div><span class="badge gold">Demo only</span></div>
+   </div>
+   <div class="card">
+    <div class="section-title">Quick actions</div>
+    <div class="action-grid"><button class="btn secondary" onclick="show('blockedUsers')">Blocked users</button><button class="btn danger" onclick="openSupportForm('safety')">Report concern</button></div>
+   </div>
   </section>
 
   <section id="privacyCenter" class="screen">
@@ -289,11 +378,12 @@ function logout(){localStorage.removeItem('mosaic_session');document.getElementB
 function applyUser(){const u=safeJson('mosaic_session',{name:'Alex',email:'alex.demo@mosaic.app'});['profileName','settingsName'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.name});['profileEmail','settingsEmail'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.email});const pi=document.getElementById('profileInitial');if(pi)pi.textContent=(u.name||'A').trim()[0].toUpperCase()}
 
 function checkConsent(){const ok=['agree1','agree2','agree3'].every(x=>document.getElementById(x).checked);const b=document.getElementById('continue');b.disabled=!ok;b.style.opacity=ok?'1':'.45'}
-function acceptConsent(){localStorage.setItem('mosaic_consent',JSON.stringify({acceptedAt:new Date().toISOString(),version:'3.0'}));document.getElementById('onboard').classList.remove('show')}
+function acceptConsent(){localStorage.setItem('mosaic_consent',JSON.stringify({acceptedAt:new Date().toISOString(),version:'4.0'}));document.getElementById('onboard').classList.remove('show')}
 function show(id){
  if(['groups','events','careers','profile'].includes(id))previousMain=id;
  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');
- const special=['chat','find','eventDetail','settings','privacyCenter'].includes(id);document.getElementById('nav').style.display=special?'none':'grid';
+ if(id==='sourceManager')renderSourceManager();if(id==='blockedUsers')renderBlockedUsers();if(id==='helpCenter')restoreLastTicket();if(id==='safetyCenter')restoreSettings();
+ const special=['chat','find','eventDetail','settings','privacyCenter','sourceManager','blockedUsers','helpCenter','safetyCenter'].includes(id);document.getElementById('nav').style.display=special?'none':'grid';
  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo({top:0,behavior:'smooth'})
 }
 function setEventTab(btn,mode){eventMode=mode;document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderEvents()}
@@ -328,13 +418,72 @@ function toggleShare(){sharing=!sharing;const b=document.getElementById('shareBt
 function setShareOff(){document.getElementById('shareLabel').textContent='Location sharing is off';const b=document.getElementById('shareBtn');b.textContent='Start sharing for 1 hour';b.className='btn ghost full';document.getElementById('shareTimer').textContent=''}
 function drawTimer(){let m=Math.floor(seconds/60),s=seconds%60;document.getElementById('shareTimer').textContent=`${m}:${String(s).padStart(2,'0')} left`}
 
+
+const sourceCatalog={
+ instagram:{name:'Instagram',icon:'IG',type:'Interests',signals:['Indie film','Photography','Street food'],detail:'Synthetic interests used for group and event recommendations.'},
+ tiktok:{name:'TikTok',icon:'TT',type:'Interests',signals:['Live music','Street food','Pilates'],detail:'Synthetic short-form content interests used only for this showcase.'},
+ linkedin:{name:'LinkedIn',icon:'in',type:'Career',signals:['Product design','Marketing','Community engagement'],detail:'Synthetic career interests used for role recommendations.'}
+};
+function getSourceState(){
+ let d=safeJson('mosaic_sources',null);
+ if(!d){d={instagram:{connected:true,lastSync:'Just now'},tiktok:{connected:true,lastSync:'Just now'},linkedin:{connected:true,lastSync:'Just now'}};localStorage.setItem('mosaic_sources',JSON.stringify(d))}
+ return d
+}
+function renderSourceManager(){
+ const state=getSourceState();let connected=0,signals=0;let html='';
+ Object.keys(sourceCatalog).forEach(function(k){
+  const c=sourceCatalog[k],st=state[k]||{connected:false,lastSync:'Never'};if(st.connected){connected++;signals+=c.signals.length}
+  html+='<div class="card"><div class="source-detail"><div class="source-logo">'+c.icon+'</div><div class="source-meta"><b>'+c.name+'</b><div class="small">'+c.type+' · '+(st.connected?'Connected':'Disconnected')+'</div><div class="status-line" style="margin-top:6px"><span class="dot '+(st.connected?'on':'')+'"></span><span>Last sync: '+st.lastSync+'</span></div></div><span class="badge '+(st.connected?'mint':'gold')+'">'+(st.connected?'Connected':'Off')+'</span></div><div class="progress" style="margin-top:12px"><i style="width:'+(st.connected?'100':'0')+'%"></i></div><p class="small" style="line-height:1.5">'+c.detail+'</p><div class="action-grid"><button class="btn ghost sm" onclick="showSourceSignals(\''+k+'\')">View signals</button><button class="btn '+(st.connected?'danger':'secondary')+' sm" onclick="toggleSource(\''+k+'\')">'+(st.connected?'Disconnect':'Reconnect')+'</button></div></div>';
+ });
+ const list=document.getElementById('sourceList');if(list)list.innerHTML=html;
+ const cc=document.getElementById('connectedCount');if(cc)cc.textContent=connected;
+ const sc=document.getElementById('signalCount');if(sc)sc.textContent=signals;
+}
+function toggleSource(key){
+ const st=getSourceState();st[key]=st[key]||{connected:false,lastSync:'Never'};st[key].connected=!st[key].connected;st[key].lastSync=st[key].connected?'Just now':'Disconnected';localStorage.setItem('mosaic_sources',JSON.stringify(st));renderSourceManager();toast(sourceCatalog[key].name+(st[key].connected?' connected':' disconnected'))
+}
+function showSourceSignals(key){
+ const c=sourceCatalog[key];document.getElementById('modalBody').innerHTML='<div class="tiny" style="color:#bca8ff;text-transform:uppercase;letter-spacing:.14em;font-weight:900">Data source</div><div class="heading" style="font-size:25px">'+c.name+'</div><p class="sub">'+c.detail+'</p><div class="section-title" style="margin-top:15px">Signals currently used</div><div class="tags">'+c.signals.map(function(x){return '<span class="tag">'+x+'</span>'}).join('')+'</div><div class="callout good" style="margin-top:13px">Only these broad synthetic labels are used in the advanced demo. Raw posts, DMs and passwords are not required.</div><button class="btn full" style="margin-top:12px" onclick="closeModal()">Done</button>';openModal()
+}
+function refreshSources(){const st=getSourceState();Object.keys(st).forEach(function(k){if(st[k].connected)st[k].lastSync='Just now'});localStorage.setItem('mosaic_sources',JSON.stringify(st));renderSourceManager();toast('Synthetic source signals refreshed')}
+function openAddSource(){
+ document.getElementById('modalBody').innerHTML='<div class="heading" style="font-size:25px">Add another source</div><p class="sub">These are concept integrations for the presentation. They are not connected to real APIs.</p><div class="earlier" style="margin-top:13px"><div class="earlier-row"><div><b>YouTube</b><div class="small">Video interests and subscriptions</div></div><span class="badge gold">Concept</span></div><div class="earlier-row"><div><b>Spotify</b><div class="small">Music genres and artists</div></div><span class="badge gold">Concept</span></div><div class="earlier-row"><div><b>Reddit</b><div class="small">Communities and topic interests</div></div><span class="badge gold">Concept</span></div></div><div class="callout warn" style="margin-top:12px">A real implementation would need each provider’s official OAuth/API approval and user consent.</div>';openModal()
+}
+
+const defaultBlocked=[
+ {id:'riley',name:'Riley P.',initial:'R',reason:'Repeated unsolicited promotion',when:'Blocked 12 days ago'},
+ {id:'casey',name:'Casey D.',initial:'C',reason:'Unwanted messages after leaving a group',when:'Blocked 5 days ago'}
+];
+function getBlocked(){let b=safeJson('mosaic_blocked',null);if(!b){b=defaultBlocked;localStorage.setItem('mosaic_blocked',JSON.stringify(b))}return b}
+function renderBlockedUsers(){
+ const b=getBlocked(),list=document.getElementById('blockedList'),badge=document.getElementById('blockedCountBadge');if(badge)badge.textContent=b.length+' blocked';
+ if(!list)return;if(!b.length){list.innerHTML='<div class="card"><div class="section-title">No blocked users</div><p class="sub">Profiles you block will appear here so you can review or unblock them later.</p></div>';return}
+ list.innerHTML=b.map(function(x,i){return '<div class="card blocked-card"><div class="avatar lavbg">'+x.initial+'</div><div class="blocked-main"><b>'+x.name+'</b><div class="small" style="margin-top:3px">'+x.reason+'</div><div class="tiny" style="margin-top:5px">'+x.when+'</div><div class="blocked-actions"><button class="btn ghost sm" onclick="viewBlocked('+i+')">Details</button><button class="btn secondary sm" onclick="unblockUser(\''+x.id+'\')">Unblock</button></div></div></div>'}).join('')
+}
+function unblockUser(id){const b=getBlocked().filter(function(x){return x.id!==id});localStorage.setItem('mosaic_blocked',JSON.stringify(b));renderBlockedUsers();toast('User unblocked')}
+function viewBlocked(i){const x=getBlocked()[i];if(!x)return;document.getElementById('modalBody').innerHTML='<div class="heading" style="font-size:25px">'+x.name+'</div><p class="sub">'+x.reason+'</p><div class="callout">Blocked users are excluded from future matching and messaging in this prototype.</div><button class="btn secondary full" style="margin-top:12px" onclick="unblockUser(\''+x.id+'\');closeModal()">Unblock user</button>';openModal()}
+function addDemoBlocked(){const b=getBlocked();if(b.some(function(x){return x.id==='jordan2'})){toast('Demo blocked profile already added');return}b.push({id:'jordan2',name:'Jordan K.',initial:'J',reason:'Demo safety example',when:'Blocked just now'});localStorage.setItem('mosaic_blocked',JSON.stringify(b));renderBlockedUsers();toast('Demo blocked profile added')}
+
+function toggleFaq(btn){const a=btn.nextElementSibling;a.classList.toggle('hidden');btn.querySelector('span').textContent=a.classList.contains('hidden')?'＋':'−'}
+function filterHelp(){const q=(document.getElementById('helpSearch').value||'').trim().toLowerCase();document.querySelectorAll('#faqList .faq').forEach(function(f){f.style.display=!q||f.dataset.search.includes(q)||f.textContent.toLowerCase().includes(q)?'block':'none'})}
+function openSupportForm(type){
+ const label=type==='safety'?'Safety report':type==='account'?'Account support':'General support';
+ document.getElementById('modalBody').innerHTML='<div class="heading" style="font-size:25px">'+label+'</div><p class="sub">This creates a local demo support ticket for presentation purposes.</p><div class="field"><div class="label">Topic</div><select id="supportTopic" class="input"><option>'+label+'</option><option>Privacy question</option><option>Event issue</option><option>Group or messaging issue</option></select></div><div class="field"><div class="label">What happened?</div><textarea id="supportText" class="input" rows="5" placeholder="Describe the issue..."></textarea></div><button class="btn full" onclick="submitSupportTicket()">Submit demo ticket</button>';openModal()
+}
+function submitSupportTicket(){const msg=(document.getElementById('supportText').value||'').trim();if(msg.length<5){toast('Add a short description first');return}const id='MS-'+String(Date.now()).slice(-6);const ticket={id:id,created:new Date().toLocaleString(),message:msg};localStorage.setItem('mosaic_last_ticket',JSON.stringify(ticket));closeModal();restoreLastTicket();toast('Support ticket '+id+' created')}
+function restoreLastTicket(){const t=safeJson('mosaic_last_ticket',null),box=document.getElementById('lastTicket');if(!box)return;if(!t){box.classList.add('hidden');return}box.classList.remove('hidden');box.innerHTML='<b>Latest demo ticket: '+t.id+'</b><div class="small" style="margin-top:3px">'+t.created+'</div>'}
+
+function setDiscoveryMode(btn,mode){document.querySelectorAll('.mode-btn').forEach(function(x){x.classList.remove('active')});btn.classList.add('active');localStorage.setItem('mosaic_discovery_mode',mode);const e=document.getElementById('modeExplain');if(e)e.textContent=mode==='similar'?'More familiar prioritises stronger shared-interest overlap.':mode==='explore'?'Explore increases complementary skills and new perspectives while keeping core safety/preferences.':'Balanced mode mixes shared interests with complementary skills and some new perspectives.';toast('Recommendation mode updated')}
+function restoreDiscoveryMode(){const mode=localStorage.getItem('mosaic_discovery_mode')||'balanced';const btn=document.querySelector('.mode-btn[data-mode="'+mode+'"]');if(btn)setDiscoveryModeSilent(btn,mode)}
+function setDiscoveryModeSilent(btn,mode){document.querySelectorAll('.mode-btn').forEach(function(x){x.classList.remove('active')});btn.classList.add('active');const e=document.getElementById('modeExplain');if(e)e.textContent=mode==='similar'?'More familiar prioritises stronger shared-interest overlap.':mode==='explore'?'Explore increases complementary skills and new perspectives while keeping core safety/preferences.':'Balanced mode mixes shared interests with complementary skills and some new perspectives.'}
+
 function toggleSetting(btn){btn.classList.toggle('on');localStorage.setItem('mosaic_setting_'+btn.dataset.key,btn.classList.contains('on')?'1':'0')}
-function restoreSettings(){document.querySelectorAll('.switch').forEach(btn=>{const v=localStorage.getItem('mosaic_setting_'+btn.dataset.key);if(v!==null)btn.classList.toggle('on',v==='1')})}
+function restoreSettings(){document.querySelectorAll('.switch').forEach(btn=>{const v=localStorage.getItem('mosaic_setting_'+btn.dataset.key);if(v!==null)btn.classList.toggle('on',v==='1')});restoreDiscoveryMode()}
 function editProfile(){const u=safeJson('mosaic_session',{name:'Alex',email:'alex.demo@mosaic.app'});document.getElementById('modalBody').innerHTML=`<div class="heading" style="font-size:25px">Edit profile</div><div class="field"><div class="label">Display name</div><input id="editName" class="input" value="${escapeHtml(u.name)}"></div><div class="field"><div class="label">Email</div><input id="editEmail" class="input" value="${escapeHtml(u.email)}"></div><button class="btn full" onclick="saveProfile()">Save profile</button>`;openModal()}
 function saveProfile(){const name=document.getElementById('editName').value.trim(),email=document.getElementById('editEmail').value.trim();if(!name||!email.includes('@')){toast('Enter a name and valid email');return}localStorage.setItem('mosaic_session',JSON.stringify({name,email}));applyUser();closeModal();toast('Profile updated')}
 function exportData(){const payload={app:'MosAIc prototype',version:'3.0',exportedAt:new Date().toISOString(),session:safeJson('mosaic_session',null),consent:safeJson('mosaic_consent',null),settings:Object.fromEntries(Object.keys(localStorage).filter(k=>k.startsWith('mosaic_setting_')).map(k=>[k,localStorage.getItem(k)])),note:'Synthetic prototype data only'};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));a.download='mosaic-prototype-data.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800)}
 function deleteAppData(){if(confirm('Delete all MosAIc prototype data stored in this browser?')){localStorage.clear();location.reload()}}
-function showAbout(){document.getElementById('modalBody').innerHTML=`<div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div><div class="heading" style="font-size:25px;margin-top:18px">From interests to real connections.</div><p class="sub">Version 3.0 university prototype. MosAIc explores how user-approved interest signals could support groups, real-world events and career opportunities instead of another endless content feed.</p><div class="callout good">All people, jobs, event venues and connected-source data in this build are fictional demonstration content.</div>`;openModal()}
+function showAbout(){document.getElementById('modalBody').innerHTML=`<div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div><div class="heading" style="font-size:25px;margin-top:18px">From interests to real connections.</div><p class="sub">Version 4.0 advanced university prototype. MosAIc explores how user-approved interest signals could support groups, real-world events and career opportunities instead of another endless content feed.</p><div class="callout good">All people, jobs, event venues and connected-source data in this build are fictional demonstration content.</div>`;openModal()}
 
 function openModal(){document.getElementById('modal').classList.add('open')}function closeModal(){document.getElementById('modal').classList.remove('open')}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),2100)}
@@ -365,7 +514,7 @@ function acceptLegal(){document.getElementById(currentLegal==='terms'?'agree1':'
 function boot(){
  renderEvents();renderJobs();restoreSettings();
  const s=safeJson('mosaic_session',null);
- if(s){document.getElementById('auth').classList.add('hidden');applyUser();if(!localStorage.getItem('mosaic_consent'))document.getElementById('onboard').classList.add('show')}
+ if(s){document.getElementById('auth').classList.add('hidden');applyUser();if(!localStorage.getItem('mosaic_consent'))document.getElementById('onboard').classList.add('show')}renderSourceManager();renderBlockedUsers();restoreLastTicket();
 }
 boot();
 if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
