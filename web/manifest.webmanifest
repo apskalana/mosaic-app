@@ -1,10 +1,24 @@
 {
+  "id": "./",
   "name": "MosAIc",
   "short_name": "MosAIc",
-  "description": "Advanced MosAIc prototype for groups, events, career opportunities, privacy controls and safety tools.",
+  "description": "MosAIc connects people through shared interests, approximate area, events, places and career opportunities.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#0b0825",
-  "theme_color": "#0b0825"
+  "theme_color": "#0b0825",
+  "categories": ["social", "lifestyle", "productivity"],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {"name":"People near you","short_name":"People","url":"./#people"},
+    {"name":"Explore","short_name":"Explore","url":"./#explore"}
+  ]
 }
