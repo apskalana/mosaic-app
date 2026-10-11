@@ -14,11 +14,11 @@
 }
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#07051a;color:var(--text)}
 body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
-.shell{width:min(100%,470px);margin:0 auto;min-height:100vh;background:linear-gradient(180deg,var(--bg),#0d0a2b);position:relative;padding-bottom:85px;overflow-x:hidden}
-.topbar{position:sticky;top:0;z-index:40;background:rgba(11,8,37,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.04);padding:14px 17px 11px}
+.shell{width:min(100%,470px);margin:0 auto;min-height:100vh;background:linear-gradient(180deg,var(--bg),#0d0a2b);position:relative;padding-bottom:92px;overflow-x:hidden}
+.topbar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:min(100%,470px);z-index:90;background:rgba(11,8,37,.97);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06);padding:calc(14px + env(safe-area-inset-top)) 17px 11px;box-shadow:0 8px 26px rgba(4,2,20,.18)}
 .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px}.mosaic-icon{width:34px;height:34px;border-radius:11px;background:#15113e;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:4px;border:1px solid #302863}.mosaic-icon i{border-radius:4px}.mosaic-icon i:nth-child(1){background:var(--coral)}.mosaic-icon i:nth-child(2){background:var(--gold)}.mosaic-icon i:nth-child(3){background:var(--mint)}.mosaic-icon i:nth-child(4){background:var(--lav)}
 .iconbtn{margin-left:auto;border:1px solid #443889;background:#211a58;color:#fff;border-radius:12px;width:38px;height:38px;display:grid;place-items:center;font-size:18px}
-.content{padding:18px 16px}.screen{display:none}.screen.active{display:block}.heading{font-size:31px;line-height:1.06;letter-spacing:-1px;font-weight:900;margin:5px 0 6px}.sub{font-size:13px;color:var(--muted);line-height:1.5}.section-title{font-size:17px;font-weight:900;margin:0 0 10px}.small{font-size:12px;color:var(--muted)}.tiny{font-size:10.5px;color:#928daa}
+.content{padding:98px 16px 18px}.screen{display:none}.screen.active{display:block}.heading{font-size:31px;line-height:1.06;letter-spacing:-1px;font-weight:900;margin:5px 0 6px}.sub{font-size:13px;color:var(--muted);line-height:1.5}.section-title{font-size:17px;font-weight:900;margin:0 0 10px}.small{font-size:12px;color:var(--muted)}.tiny{font-size:10.5px;color:#928daa}
 .row{display:flex;align-items:center}.between{justify-content:space-between}.gap{gap:10px}.wrap{flex-wrap:wrap}.grow{flex:1}
 .card{background:linear-gradient(180deg,#211a58,#1a1649);border:1px solid var(--line);border-radius:21px;padding:15px;box-shadow:var(--shadow);margin:13px 0}.card.no-shadow{box-shadow:none}
 .btn{border:0;border-radius:13px;padding:12px 14px;font-weight:900;background:var(--mint);color:#09211b}.btn.secondary{background:#261f61;color:#fff;border:1px solid #483d8c}.btn.ghost{background:transparent;color:#e7e3ff;border:1px solid #483d8c}.btn.danger{background:rgba(255,99,116,.12);color:#ffd2d8;border:1px solid rgba(255,99,116,.35)}.btn.dark{background:#15102f;color:#fff}.btn.sm{padding:8px 10px;font-size:11px;border-radius:10px}.btn.full{width:100%}
@@ -36,7 +36,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
 .profile-head{display:flex;align-items:center;gap:13px}.big-avatar{width:68px;height:68px;border-radius:20px;background:var(--coral);color:#29100f;font-size:31px;font-weight:900;display:grid;place-items:center}.profile-name{font-size:29px;font-weight:900}.person-row{display:flex;gap:14px}.person{text-align:center}.person .avatar{margin:auto}.person span{font-size:10px;color:var(--muted)}
 .pref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.pref{border:1px solid #433887;background:#241e5d;color:#fff;border-radius:11px;padding:11px 6px;font-size:11px;font-weight:850}.pref.active{background:var(--mint);color:#09211b;border-color:transparent}
 .chat-top{display:flex;align-items:center;gap:10px;padding-bottom:13px;border-bottom:1px solid #342b6c}.back{border:0;background:transparent;color:#fff;font-size:28px;padding:0 4px}.chat-event{background:var(--gold);color:#2b1900;border-radius:18px;padding:14px;margin:16px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}.message-wrap{margin:15px 0}.sender{font-size:11px;font-weight:900;margin:0 0 5px 6px}.sender.maya{color:var(--mint)}.sender.priya{color:var(--gold)}.sender.sam{color:var(--lav)}.bubble{max-width:85%;font-size:14px;line-height:1.45;padding:12px 14px;border-radius:16px 16px 16px 5px;background:#2c2367}.bubble.mine{margin-left:auto;background:var(--mint);color:#082019;border-radius:16px 16px 5px 16px}.composer{display:flex;gap:8px;margin-top:22px}.composer input{flex:1;border:1px solid #443989;background:#241d59;color:#fff;border-radius:999px;padding:12px 14px}.send{width:46px;height:46px;border-radius:50%;border:0;background:var(--mint)}
-.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:50;width:min(100%,470px);background:rgba(14,10,45,.98);border-top:1px solid #352c6d;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 6px calc(9px + env(safe-area-inset-bottom))}.nav button{border:0;background:transparent;color:#918ca9;font-size:9.5px;font-weight:800;border-radius:11px;padding:6px}.nav button.active{color:var(--mint)}.nav .ico{display:block;font-size:20px;margin-bottom:2px}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:80;width:min(100%,470px);background:rgba(14,10,45,.985);backdrop-filter:blur(14px);border-top:1px solid #352c6d;display:grid;grid-template-columns:repeat(5,1fr);padding:7px 5px calc(9px + env(safe-area-inset-bottom));box-shadow:0 -8px 28px rgba(4,2,20,.24)}.nav button{border:0;background:transparent;color:#918ca9;font-size:9.5px;font-weight:800;border-radius:11px;padding:6px}.nav button.active{color:var(--mint)}.nav .ico{display:grid;place-items:center;height:22px;margin-bottom:3px}.nav .ico svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .detail-hero{border-radius:22px;padding:18px;background:linear-gradient(145deg,#2b216b,#15113a);border:1px solid #453b88}.detail-hero h1{margin:8px 0 5px;font-size:29px;line-height:1.08}.kv{display:grid;grid-template-columns:95px 1fr;gap:9px 12px;font-size:12px;padding:11px 0;border-bottom:1px solid #332b6c}.kv:last-child{border-bottom:0}.kv b{color:#8e89aa}.host{display:flex;align-items:center;gap:10px}.hostlogo{width:42px;height:42px;border-radius:12px;background:var(--lav);display:grid;place-items:center;color:#110c2b;font-weight:900}
 .setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #393073}.setting-row:last-child{border-bottom:0}.switch{width:45px;height:25px;border:0;background:#443c69;border-radius:999px;padding:3px;position:relative}.switch::after{content:"";position:absolute;width:19px;height:19px;left:3px;top:3px;border-radius:50%;background:white;transition:.18s}.switch.on{background:var(--mint)}.switch.on::after{left:23px}.setting-link{width:100%;background:none;border:0;color:white;text-align:left;padding:0}.danger-text{color:#ff98a4}
 .input{width:100%;background:#16123d;border:1px solid #3d347a;border-radius:13px;padding:12px 13px;color:white;outline:none}.input:focus{border-color:var(--mint)}.field{margin:12px 0}.label{font-size:11px;font-weight:850;color:#c7c2de;margin-bottom:6px}
@@ -57,9 +57,17 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
 .score-ring{width:78px;height:78px;border-radius:50%;background:conic-gradient(var(--mint) 0 92%,#2b2457 92% 100%);display:grid;place-items:center}.score-ring:after{content:"";position:absolute}.score-inner{width:61px;height:61px;border-radius:50%;background:#17123f;display:grid;place-items:center;text-align:center;font-weight:950;font-size:18px}
 .mode-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mode-btn{border:1px solid #413783;background:#211a58;color:#fff;border-radius:11px;padding:10px 6px;font-size:10.5px;font-weight:850}.mode-btn.active{background:var(--mint);color:#082019;border-color:transparent}
 .status-line{display:flex;align-items:center;gap:7px;font-size:11px;color:#aaa5c5}.dot{width:8px;height:8px;border-radius:50%;background:#777}.dot.on{background:var(--mint);box-shadow:0 0 0 4px rgba(66,222,192,.10)}
+.people-toolbar{display:flex;gap:8px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none}.people-toolbar::-webkit-scrollbar{display:none}.filter-pill{flex:0 0 auto;border:1px solid #403680;background:#211a58;color:#eae6ff;border-radius:999px;padding:9px 12px;font-size:10.5px;font-weight:850}.filter-pill.active{background:var(--mint);color:#082019;border-color:transparent}
+.match-card{position:relative;overflow:hidden}.match-score{position:absolute;right:13px;top:13px;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:rgba(66,222,192,.12);border:1px solid rgba(66,222,192,.38);color:#8effe8;font-size:13px;font-weight:950}.match-location{display:flex;align-items:center;gap:6px;color:#bdb8d5;font-size:11px;margin-top:5px}.match-location svg{width:14px;height:14px;stroke:var(--mint);fill:none;stroke-width:2}
+.person-profile{display:flex;gap:12px;align-items:center;padding-right:58px}.person-avatar{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,var(--lav),#6654db);font-size:19px;font-weight:950;color:#100b2a}.connect-state{font-size:10px;color:#9f9ab9;margin-top:6px}
+.explore-switch{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:13px 0}.explore-switch button{border:1px solid #403680;background:#211a58;color:#fff;border-radius:13px;padding:10px;font-weight:900}.explore-switch button.active{background:var(--mint);color:#082019;border-color:transparent}
+.place-card{overflow:hidden}.place-cover{height:108px;margin:-15px -15px 13px;background:linear-gradient(135deg,rgba(66,222,192,.24),rgba(143,124,248,.2)),#17123f;position:relative}.place-cover:before,.place-cover:after{content:"";position:absolute;border-radius:999px;background:rgba(255,255,255,.08)}.place-cover:before{width:140px;height:28px;left:-25px;top:39px;transform:rotate(-17deg)}.place-cover:after{width:120px;height:28px;right:-18px;top:52px;transform:rotate(22deg)}.place-emoji{position:absolute;left:18px;bottom:15px;font-size:34px}.place-distance{position:absolute;right:12px;top:12px;background:#0e0b2d;border:1px solid #453a89;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:850}
+.place-meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.place-meta span{font-size:10px;color:#c7c2db;background:#17123f;border:1px solid #332b6a;border-radius:999px;padding:6px 8px}
+.header-action{display:grid;place-items:center}.header-action svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
 .ticket{background:#17123f;border:1px dashed #51479a;border-radius:13px;padding:11px;font-size:11px}
 
-@media(min-width:700px){body{padding:20px 0}.shell{min-height:calc(100vh - 40px);border:1px solid #302763;border-radius:28px;overflow:hidden}.nav{bottom:20px;border-radius:0 0 28px 28px}}
+@media(min-width:700px){body{padding:20px 0}.shell{min-height:calc(100vh - 40px);border:1px solid #302763;border-radius:28px;overflow:hidden}.topbar{top:20px;border-radius:28px 28px 0 0}.nav{bottom:20px;border-radius:0 0 28px 28px}}
 </style>
 </head>
 <body>
@@ -102,7 +110,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
  <header class="topbar">
   <div class="row">
    <div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div>
-   <button class="iconbtn" onclick="openSettings()" aria-label="Settings">⚙</button>
+   <button type="button" class="iconbtn header-action" onclick="openSettings()" aria-label="Settings"><svg viewBox="0 0 24 24"><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="8.2"/></svg></button>
   </div>
  </header>
 
@@ -133,14 +141,35 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
    </div>
   </section>
 
-  <section id="events" class="screen">
-   <div class="heading">Events near you</div>
-   <div class="tabs"><button class="active" onclick="setEventTab(this,'week')">This week</button><button onclick="setEventTab(this,'group')">With my group</button><button onclick="setEventTab(this,'interest')">My interests</button></div>
-   <div class="map"><div class="block a"></div><div class="block b"></div><div class="block c"></div><div class="block d"></div><div class="road a"></div><div class="road b"></div><div class="road c"></div><div class="pin mint" style="left:47%;top:33%">♙</div><div class="pin gold" style="left:26%;top:61%">⌖</div><div class="pin lav" style="right:18%;top:48%">⌖</div></div>
-   <div id="eventList"></div>
+  <section id="people" class="screen">
+   <div class="heading">People near you</div>
+   <div class="sub">Connect with people who share your interests and are in the same general area. MosAIc uses approximate area for discovery — never your live location.</div>
+   <div class="people-toolbar" style="margin-top:13px">
+    <button class="filter-pill active" data-people-filter="best" onclick="setPeopleFilter(this,'best')">Best match</button>
+    <button class="filter-pill" data-people-filter="closest" onclick="setPeopleFilter(this,'closest')">Closest</button>
+    <button class="filter-pill" data-people-filter="shared" onclick="setPeopleFilter(this,'shared')">Most shared</button>
+    <button class="filter-pill" data-people-filter="fresh" onclick="setPeopleFilter(this,'fresh')">New perspectives</button>
+   </div>
+   <div class="callout good" style="margin-top:8px"><b>Area privacy:</b> this prototype shows approximate suburb/distance only. Exact location is never shown on discovery cards.</div>
+   <div id="peopleList"></div>
   </section>
 
-  <section id="eventDetail" class="screen">
+  <section id="events" class="screen">
+   <div class="heading">Explore</div>
+   <div class="sub">Discover events and places that match your interests, your groups and the area you choose to explore.</div>
+   <div class="explore-switch"><button id="exploreEventsBtn" class="active" onclick="setExploreType('events')">Events</button><button id="explorePlacesBtn" onclick="setExploreType('places')">Places</button></div>
+   <div id="eventsPanel">
+    <div class="tabs"><button class="active" onclick="setEventTab(this,'week')">This week</button><button onclick="setEventTab(this,'group')">With my group</button><button onclick="setEventTab(this,'interest')">My interests</button></div>
+    <div class="map"><div class="block a"></div><div class="block b"></div><div class="block c"></div><div class="block d"></div><div class="road a"></div><div class="road b"></div><div class="road c"></div><div class="pin mint" style="left:47%;top:33%">●</div><div class="pin gold" style="left:26%;top:61%">●</div><div class="pin lav" style="right:18%;top:48%">●</div></div>
+    <div id="eventList"></div>
+   </div>
+   <div id="placesPanel" class="hidden">
+    <div class="people-toolbar"><button class="filter-pill active" onclick="setPlaceFilter(this,'recommended')">Recommended</button><button class="filter-pill" onclick="setPlaceFilter(this,'food')">Food</button><button class="filter-pill" onclick="setPlaceFilter(this,'creative')">Creative</button><button class="filter-pill" onclick="setPlaceFilter(this,'outdoors')">Outdoors</button></div>
+    <div id="placeList"></div>
+   </div>
+  </section>
+
+<section id="eventDetail" class="screen">
    <div class="chat-top"><button class="back" onclick="show('events')">‹</button><div><b>Event details</b><div class="small">Everything you need before you go</div></div></div>
    <div id="eventDetailBody"></div>
   </section>
@@ -152,7 +181,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
   </section>
 
   <section id="profile" class="screen">
-   <div class="profile-head"><div class="big-avatar" id="profileInitial">A</div><div><div class="profile-name" id="profileName">Alex</div><div class="sub" id="profileEmail">alex.demo@mosaic.app</div></div></div>
+   <div class="profile-head"><div class="big-avatar" id="profileInitial">A</div><div class="grow"><div class="profile-name" id="profileName">Alex</div><div class="sub" id="profileEmail">alex.demo@mosaic.app</div></div><button type="button" class="iconbtn header-action" style="margin-left:0;flex:0 0 auto" onclick="openSettings()" aria-label="Open settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L14.5 3h-5L9.2 6.1a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.4-1a7.6 7.6 0 0 0 1.7 1l.3 3.1h5l.3-3.1a7.6 7.6 0 0 0 1.7-1l2.4 1 2-3.4-2-1.5c.1-.3.1-.7.1-1z"/></svg></button></div>
    <div class="card">
     <div class="section-title">Your interests</div>
     <div class="tiny">■ Instagram &nbsp; ■ TikTok &nbsp; ■ LinkedIn</div>
@@ -221,7 +250,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
     <button class="setting-link setting-row" onclick="show('blockedUsers')"><div><b>Blocked users</b><div class="small">Review, unblock and manage safety actions.</div></div><span>›</span></button>
     <button class="setting-link setting-row" onclick="show('helpCenter')"><div><b>Help centre</b><div class="small">FAQs, support tickets and safety reporting.</div></div><span>›</span></button>
     <button class="setting-link setting-row" onclick="show('safetyCenter')"><div><b>Safety centre</b><div class="small">Review your safety setup and controls.</div></div><span>›</span></button>
-    <button class="setting-link setting-row" onclick="showAbout()"><div><b>About MosAIc</b><div class="small">Version 4.1 · advanced university prototype.</div></div><span>›</span></button>
+    <button class="setting-link setting-row" onclick="showAbout()"><div><b>About MosAIc</b><div class="small">Version 5.0 · advanced university prototype.</div></div><span>›</span></button>
    </div>
 
    <button class="btn danger full" onclick="logout()">Log out</button>
@@ -329,10 +358,11 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
  </main>
 
  <nav id="nav" class="nav">
-  <button class="active" data-screen="groups" onclick="show('groups')"><span class="ico">♙</span>Groups</button>
-  <button data-screen="events" onclick="show('events')"><span class="ico">⌖</span>Events</button>
-  <button data-screen="careers" onclick="show('careers')"><span class="ico">▣</span>Careers</button>
-  <button data-screen="profile" onclick="show('profile')"><span class="ico">♧</span>Profile</button>
+  <button type="button" class="active" data-screen="groups" onclick="show('groups')"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20v-1.5a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4V20"/><circle cx="9" cy="8" r="3"/><path d="M15 6.2a3 3 0 0 1 0 5.6M16 14.8a4 4 0 0 1 4 4V20"/></svg></span>Groups</button>
+  <button type="button" data-screen="people" onclick="show('people')"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3.5 20v-1.5A4.5 4.5 0 0 1 8 14h2a4.5 4.5 0 0 1 4.5 4.5V20M14.5 15.2A4 4 0 0 1 20.5 19"/></svg></span>People</button>
+  <button type="button" data-screen="events" onclick="show('events')"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1z"/></svg></span>Explore</button>
+  <button type="button" data-screen="careers" onclick="show('careers')"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7M3 12h18M10 12v2h4v-2"/></svg></span>Careers</button>
+  <button type="button" data-screen="profile" onclick="show('profile')"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20v-1.5A5.5 5.5 0 0 1 11 13h2a5.5 5.5 0 0 1 5.5 5.5V20"/></svg></span>Profile</button>
  </nav>
 </div>
 
@@ -351,6 +381,22 @@ const jobs=[
  {id:'events',title:'Events and Community Coordinator',company:'Neighbourhood Collective',location:'Parramatta',badge:'events, live music',tone:'mint',why:['Live music','Events','Community'],draft:'Draft application highlights group coordination, event interest and community engagement.'},
  {id:'marketing',title:'Marketing and Communications Assistant',company:'Northside Studio',location:'Sydney',badge:'marketing',tone:'lav',why:['Marketing','Product design'],draft:'Draft application highlights marketing interest and multidisciplinary collaboration.'}
 ];
+
+const nearbyPeople=[
+ {id:'mayaN',name:'Maya Chen',initial:'M',area:'Parramatta',distance:1.8,score:94,shared:3,newness:1,interests:['Indie film','Street food','Pilates'],extra:['UX design','Photography'],bio:'Design student who likes film nights, food markets and casual weekend activities.'},
+ {id:'noahN',name:'Noah Singh',initial:'N',area:'Westmead',distance:2.6,score:90,shared:2,newness:2,interests:['Live music','Marketing'],extra:['Cybersecurity','Startups'],bio:'Tech student interested in live events, startups and multidisciplinary projects.'},
+ {id:'sophieN',name:'Sophie Tran',initial:'S',area:'Harris Park',distance:3.1,score:87,shared:2,newness:3,interests:['Product design','Pilates'],extra:['Sustainability','Community'],bio:'Product-design enthusiast who enjoys community workshops and active meetups.'},
+ {id:'leoN',name:'Leo Martin',initial:'L',area:'Newtown',distance:7.4,score:82,shared:2,newness:4,interests:['Indie film','Live music'],extra:['Politics','Volunteering'],bio:'Film and music fan who likes discussions, volunteering and discovering independent venues.'}
+];
+const places=[
+ {id:'laneway',name:'Laneway Screen Room',category:'creative',area:'Surry Hills',distance:5.8,emoji:'🎬',why:'Indie film + live events',desc:'Small independent screening venue with short-film nights and talks.',tags:['Indie film','Indoor','Evening']},
+ {id:'market',name:'Pyrmont Community Market',category:'food',area:'Pyrmont',distance:6.2,emoji:'🍜',why:'Street food + group events',desc:'Weekend market with food stalls, local makers and live community activities.',tags:['Street food','Markets','Groups']},
+ {id:'studio',name:'Clay Room Studio',category:'creative',area:'Newtown',distance:7.1,emoji:'🏺',why:'Creative + beginner friendly',desc:'Small workshop space for pottery tasters and beginner creative sessions.',tags:['Creative','Workshop','Beginner']},
+ {id:'park',name:'Parramatta Park Loop',category:'outdoors',area:'Parramatta',distance:1.4,emoji:'🌿',why:'Fitness + local groups',desc:'Popular open park loop for casual runs, walks and small-group meetups.',tags:['Outdoors','Running','Free']},
+ {id:'coffee',name:'Riverside Social Café',category:'food',area:'Parramatta',distance:1.9,emoji:'☕',why:'Coffee + community',desc:'Relaxed fictional café used as a meetup point for local groups.',tags:['Coffee','Social','Study']}
+];
+let peopleFilter='best',placeFilter='recommended',exploreType='events';
+
 
 const groupChats={
  saturday:{
@@ -414,17 +460,44 @@ function logout(){localStorage.removeItem('mosaic_session');document.getElementB
 function applyUser(){const u=safeJson('mosaic_session',{name:'Alex',email:'alex.demo@mosaic.app'});['profileName','settingsName'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.name});['profileEmail','settingsEmail'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.email});const pi=document.getElementById('profileInitial');if(pi)pi.textContent=(u.name||'A').trim()[0].toUpperCase()}
 
 function checkConsent(){const ok=['agree1','agree2','agree3'].every(x=>document.getElementById(x).checked);const b=document.getElementById('continue');b.disabled=!ok;b.style.opacity=ok?'1':'.45'}
-function acceptConsent(){localStorage.setItem('mosaic_consent',JSON.stringify({acceptedAt:new Date().toISOString(),version:'4.1'}));document.getElementById('onboard').classList.remove('show')}
+function acceptConsent(){localStorage.setItem('mosaic_consent',JSON.stringify({acceptedAt:new Date().toISOString(),version:'5.0'}));document.getElementById('onboard').classList.remove('show')}
 function openSettings(){show('settings')}
 function show(id){
  const target=document.getElementById(id);
  if(!target){toast('This screen is unavailable in the current build');return}
- if(['groups','events','careers','profile'].includes(id))previousMain=id;
+ if(['groups','people','events','careers','profile'].includes(id))previousMain=id;
  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));target.classList.add('active');
- if(id==='sourceManager')renderSourceManager();if(id==='blockedUsers')renderBlockedUsers();if(id==='helpCenter')restoreLastTicket();if(id==='safetyCenter')restoreSettings();
+ if(id==='people')renderPeople();if(id==='events'){renderEvents();renderPlaces()}if(id==='sourceManager')renderSourceManager();if(id==='blockedUsers')renderBlockedUsers();if(id==='helpCenter')restoreLastTicket();if(id==='safetyCenter')restoreSettings();
  const special=['chat','find','eventDetail','settings','privacyCenter','sourceManager','blockedUsers','helpCenter','safetyCenter'].includes(id);document.getElementById('nav').style.display=special?'none':'grid';
  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo({top:0,behavior:'smooth'})
 }
+
+function setPeopleFilter(btn,mode){peopleFilter=mode;document.querySelectorAll('[data-people-filter]').forEach(function(x){x.classList.remove('active')});btn.classList.add('active');renderPeople()}
+function renderPeople(){
+ let list=[...nearbyPeople];
+ if(peopleFilter==='closest')list.sort(function(a,b){return a.distance-b.distance});
+ else if(peopleFilter==='shared')list.sort(function(a,b){return b.shared-a.shared||b.score-a.score});
+ else if(peopleFilter==='fresh')list.sort(function(a,b){return b.newness-a.newness});
+ else list.sort(function(a,b){return b.score-a.score});
+ const host=document.getElementById('peopleList');if(!host)return;
+ host.innerHTML=list.map(function(p){
+  const state=localStorage.getItem('mosaic_connect_'+p.id)||'Connect';
+  return '<div class="card match-card"><div class="match-score">'+p.score+'%</div><div class="person-profile"><div class="person-avatar">'+p.initial+'</div><div><div class="group-title">'+p.name+'</div><div class="match-location"><svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11z"/><circle cx="12" cy="10" r="2"/></svg>'+p.area+' · ~'+p.distance.toFixed(1)+' km</div></div></div><div class="tags">'+p.interests.map(function(x){return '<span class="tag minttag">'+x+'</span>'}).join('')+p.extra.slice(0,1).map(function(x){return '<span class="tag">'+x+'</span>'}).join('')+'</div><p class="sub" style="color:#d3cee6">'+p.bio+'</p><div class="row gap"><button class="btn secondary grow" onclick="openPerson(\''+p.id+'\')">Why matched</button><button class="btn grow" id="connect-'+p.id+'" onclick="connectPerson(\''+p.id+'\')">'+state+'</button></div><div class="connect-state" id="connect-state-'+p.id+'">'+(state==='Request sent'?'Connection request pending':'Approximate-area match · exact location hidden')+'</div></div>';
+ }).join('')
+}
+function connectPerson(id){const p=nearbyPeople.find(function(x){return x.id===id});if(!p)return;const key='mosaic_connect_'+id;const cur=localStorage.getItem(key);if(cur==='Request sent'){toast('Connection request is already pending');return}localStorage.setItem(key,'Request sent');const b=document.getElementById('connect-'+id);if(b)b.textContent='Request sent';const st=document.getElementById('connect-state-'+id);if(st)st.textContent='Connection request pending';toast('Connection request sent to '+p.name)}
+function openPerson(id){const p=nearbyPeople.find(function(x){return x.id===id});if(!p)return;document.getElementById('modalBody').innerHTML='<div class="row gap"><div class="person-avatar">'+p.initial+'</div><div><div class="heading" style="font-size:25px;margin:0">'+p.name+'</div><div class="match-location"><svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11z"/><circle cx="12" cy="10" r="2"/></svg>'+p.area+' · approximate area</div></div></div><div class="card no-shadow"><div class="section-title">Why MosAIc matched you</div><div class="kv"><b>Match score</b><span>'+p.score+'% prototype score</span></div><div class="kv"><b>Shared</b><span>'+p.interests.join(', ')+'</span></div><div class="kv"><b>New perspective</b><span>'+p.extra.join(', ')+'</span></div><div class="kv"><b>Distance</b><span>About '+p.distance.toFixed(1)+' km · approximate only</span></div></div><div class="callout good">The matching concept combines shared interests, approximate area, preferences and complementary interests — not private messages or exact live location.</div><button class="btn full" style="margin-top:12px" onclick="connectPerson(\''+p.id+'\');closeModal()">Connect</button>';openModal()}
+function setExploreType(type){exploreType=type;document.getElementById('eventsPanel').classList.toggle('hidden',type!=='events');document.getElementById('placesPanel').classList.toggle('hidden',type!=='places');document.getElementById('exploreEventsBtn').classList.toggle('active',type==='events');document.getElementById('explorePlacesBtn').classList.toggle('active',type==='places');if(type==='places')renderPlaces();else renderEvents()}
+function setPlaceFilter(btn,mode){placeFilter=mode;document.querySelectorAll('#placesPanel .filter-pill').forEach(function(x){x.classList.remove('active')});btn.classList.add('active');renderPlaces()}
+function renderPlaces(){
+ let list=places;if(placeFilter!=='recommended')list=places.filter(function(p){return p.category===placeFilter});
+ const host=document.getElementById('placeList');if(!host)return;
+ host.innerHTML=list.map(function(p){return '<div class="card place-card" onclick="openPlace(\''+p.id+'\')"><div class="place-cover"><div class="place-emoji">'+p.emoji+'</div><div class="place-distance">~'+p.distance.toFixed(1)+' km</div></div><div class="row between"><div><div class="group-title">'+p.name+'</div><div class="small">'+p.area+'</div></div><span class="badge lav">Explore</span></div><div class="place-meta">'+p.tags.map(function(x){return '<span>'+x+'</span>'}).join('')+'</div><p class="sub" style="color:#d4cfe7">'+p.desc+'</p><div class="callout good"><b>Recommended because:</b> '+p.why+'</div></div>'}).join('')
+}
+function openPlace(id){const p=places.find(function(x){return x.id===id});if(!p)return;document.getElementById('modalBody').innerHTML='<div class="tiny" style="color:#bca8ff;text-transform:uppercase;letter-spacing:.14em;font-weight:900">Explore place</div><div class="heading" style="font-size:25px">'+p.emoji+' '+p.name+'</div><div class="sub">'+p.area+' · about '+p.distance.toFixed(1)+' km</div><div class="tags">'+p.tags.map(function(x){return '<span class="tag">'+x+'</span>'}).join('')+'</div><p class="sub" style="margin-top:14px;color:#d4cfe7">'+p.desc+'</p><div class="callout good"><b>Why it fits you:</b> '+p.why+'</div><div class="action-grid" style="margin-top:12px"><button class="btn secondary" onclick="savePlaceDemo()">Save place</button><button class="btn" onclick="goPeopleFromPlace()">Find people nearby</button></div>';openModal()}
+function savePlaceDemo(){toast('Place saved');closeModal()}
+function goPeopleFromPlace(){closeModal();show('people')}
+
 function setEventTab(btn,mode){eventMode=mode;document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderEvents()}
 function renderEvents(){
  let list=events;if(eventMode==='group')list=list.filter(x=>x.kind==='group');if(eventMode==='interest')list=list.filter(x=>x.kind==='interest');
@@ -551,7 +624,7 @@ function editProfile(){const u=safeJson('mosaic_session',{name:'Alex',email:'ale
 function saveProfile(){const name=document.getElementById('editName').value.trim(),email=document.getElementById('editEmail').value.trim();if(!name||!email.includes('@')){toast('Enter a name and valid email');return}localStorage.setItem('mosaic_session',JSON.stringify({name,email}));applyUser();closeModal();toast('Profile updated')}
 function exportData(){const payload={app:'MosAIc prototype',version:'3.0',exportedAt:new Date().toISOString(),session:safeJson('mosaic_session',null),consent:safeJson('mosaic_consent',null),settings:Object.fromEntries(Object.keys(localStorage).filter(k=>k.startsWith('mosaic_setting_')).map(k=>[k,localStorage.getItem(k)])),note:'Synthetic prototype data only'};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));a.download='mosaic-prototype-data.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800)}
 function deleteAppData(){if(confirm('Delete all MosAIc prototype data stored in this browser?')){localStorage.clear();location.reload()}}
-function showAbout(){document.getElementById('modalBody').innerHTML=`<div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div><div class="heading" style="font-size:25px;margin-top:18px">From interests to real connections.</div><p class="sub">Version 4.1 advanced university prototype. MosAIc explores how user-approved interest signals could support groups, real-world events and career opportunities instead of another endless content feed.</p><div class="callout good">All people, jobs, event venues and connected-source data in this build are fictional demonstration content.</div>`;openModal()}
+function showAbout(){document.getElementById('modalBody').innerHTML=`<div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div><div class="heading" style="font-size:25px;margin-top:18px">From interests to real connections.</div><p class="sub">Version 5.0 advanced university prototype. MosAIc explores how user-approved interest signals could support groups, real-world events and career opportunities instead of another endless content feed.</p><div class="callout good">All people, jobs, event venues and connected-source data in this build are fictional demonstration content.</div>`;openModal()}
 
 function openModal(){document.getElementById('modal').classList.add('open')}function closeModal(){document.getElementById('modal').classList.remove('open')}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),2100)}
@@ -580,7 +653,7 @@ function closeLegal(){document.getElementById('legal').classList.remove('open');
 function acceptLegal(){document.getElementById(currentLegal==='terms'?'agree1':'agree2').checked=true;closeLegal();checkConsent()}
 
 function boot(){
- renderEvents();renderJobs();restoreSettings();renderGroupChat();
+ renderEvents();renderJobs();renderPeople();renderPlaces();restoreSettings();renderGroupChat();
  const s=safeJson('mosaic_session',null);
  if(s){document.getElementById('auth').classList.add('hidden');applyUser();if(!localStorage.getItem('mosaic_consent'))document.getElementById('onboard').classList.add('show')}renderSourceManager();renderBlockedUsers();restoreLastTicket();
 }
