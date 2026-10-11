@@ -464,8 +464,8 @@ function renderGroupChat(){
  if(name)name.textContent=g.name;if(members)members.textContent=g.members;if(note)note.textContent=g.note;
  if(banner){
    let action='';
-   if(g.event.action==='find')action='<button type="button" class="btn dark sm" onclick="show(\\'find\\')">Find each other</button>';
-   else action='<button type="button" class="btn dark sm" onclick="showGroupMeetupInfo(\\''+activeChatGroup+'\\')">Meetup details</button>';
+   if(g.event.action==='find')action="<button type=\"button\" class=\"btn dark sm\" onclick=\"show('find')\">Find each other</button>";
+   else action="<button type=\"button\" class=\"btn dark sm\" onclick=\"showGroupMeetupInfo('"+activeChatGroup+"')\">Meetup details</button>";
    banner.innerHTML='<div class="chat-event"><div><b>'+g.event.title+'</b><div style="font-size:11px;margin-top:3px">'+g.event.text+'</div></div>'+action+'</div>';
  }
  if(messages)messages.innerHTML=g.messages.map(function(m){
