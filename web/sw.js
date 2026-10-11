@@ -1,4 +1,4 @@
-const CACHE='mosaic-v5';
+const CACHE='mosaic-v5.1';
 const STATIC=['./manifest.webmanifest','./icon.svg'];
 self.addEventListener('install',event=>{
   self.skipWaiting();
