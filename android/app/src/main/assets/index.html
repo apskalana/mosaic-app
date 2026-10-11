@@ -170,7 +170,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
   </section>
 
 <section id="eventDetail" class="screen">
-   <div class="chat-top"><button class="back" onclick="show('events')">‹</button><div><b>Event details</b><div class="small">Everything you need before you go</div></div></div>
+   <div class="chat-top"><button class="back" onclick="mosaicBack()">‹</button><div><b>Event details</b><div class="small">Everything you need before you go</div></div></div>
    <div id="eventDetailBody"></div>
   </section>
 
@@ -204,7 +204,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
   </section>
 
   <section id="settings" class="screen">
-   <div class="chat-top"><button class="back" onclick="show('profile')">‹</button><div><b>Settings</b><div class="small">Account, privacy, notifications and safety</div></div></div>
+   <div class="chat-top"><button class="back" onclick="mosaicBack()">‹</button><div><b>Settings</b><div class="small">Account, privacy, notifications and safety</div></div></div>
    <div class="card">
     <div class="section-title">Account</div>
     <div class="setting-row"><div><b id="settingsName">Alex</b><div class="small" id="settingsEmail">alex.demo@mosaic.app</div></div><button class="btn ghost sm" onclick="editProfile()">Edit</button></div>
@@ -250,7 +250,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
     <button class="setting-link setting-row" onclick="show('blockedUsers')"><div><b>Blocked users</b><div class="small">Review, unblock and manage safety actions.</div></div><span>›</span></button>
     <button class="setting-link setting-row" onclick="show('helpCenter')"><div><b>Help centre</b><div class="small">FAQs, support tickets and safety reporting.</div></div><span>›</span></button>
     <button class="setting-link setting-row" onclick="show('safetyCenter')"><div><b>Safety centre</b><div class="small">Review your safety setup and controls.</div></div><span>›</span></button>
-    <button class="setting-link setting-row" onclick="showAbout()"><div><b>About MosAIc</b><div class="small">Version 5.0 · advanced university prototype.</div></div><span>›</span></button>
+    <button class="setting-link setting-row" onclick="showAbout()"><div><b>About MosAIc</b><div class="small">Version 5.1 · advanced university prototype.</div></div><span>›</span></button>
    </div>
 
    <button class="btn danger full" onclick="logout()">Log out</button>
@@ -258,7 +258,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
 
 
   <section id="sourceManager" class="screen">
-   <div class="chat-top"><button class="back" onclick="show('settings')">‹</button><div><b>Connected sources</b><div class="small">Choose what MosAIc can use for recommendations</div></div></div>
+   <div class="chat-top"><button class="back" onclick="mosaicBack()">‹</button><div><b>Connected sources</b><div class="small">Choose what MosAIc can use for recommendations</div></div></div>
    <div class="card">
     <div class="row between"><div><div class="section-title" style="margin-bottom:4px">Data minimisation</div><div class="small">This advanced demo stores broad synthetic interest signals, not full social histories.</div></div><span class="badge mint">Privacy-first</span></div>
     <div class="advanced-grid" style="margin-top:13px"><div class="metric"><b id="connectedCount">3</b><span>connected sources</span></div><div class="metric"><b id="signalCount">9</b><span>interest signals</span></div></div>
@@ -272,7 +272,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
   </section>
 
   <section id="blockedUsers" class="screen">
-   <div class="chat-top"><button class="back" onclick="show('settings')">‹</button><div><b>Blocked users</b><div class="small">People you have removed from matching and messaging</div></div></div>
+   <div class="chat-top"><button class="back" onclick="mosaicBack()">‹</button><div><b>Blocked users</b><div class="small">People you have removed from matching and messaging</div></div></div>
    <div class="card">
     <div class="row between"><div><div class="section-title" style="margin-bottom:4px">Your safety controls</div><div class="small">Blocked profiles cannot appear in your groups or send you messages in this demo.</div></div><span class="badge mint" id="blockedCountBadge">2 blocked</span></div>
    </div>
@@ -281,7 +281,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
   </section>
 
   <section id="helpCenter" class="screen">
-   <div class="chat-top"><button class="back" onclick="show('settings')">‹</button><div><b>Help centre</b><div class="small">Support for account, privacy, events and safety</div></div></div>
+   <div class="chat-top"><button class="back" onclick="mosaicBack()">‹</button><div><b>Help centre</b><div class="small">Support for account, privacy, events and safety</div></div></div>
    <div class="help-search"><input id="helpSearch" class="input" placeholder="Search help topics" oninput="filterHelp()"><button class="btn sm" onclick="filterHelp()">Search</button></div>
    <div class="advanced-grid">
     <button class="card no-shadow setting-link support-card" onclick="openSupportForm('account')"><div class="support-icon">👤</div><div><b>Account help</b><div class="small">Login, profile and settings</div></div></button>
@@ -302,7 +302,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
   </section>
 
   <section id="safetyCenter" class="screen">
-   <div class="chat-top"><button class="back" onclick="show('settings')">‹</button><div><b>Safety centre</b><div class="small">Your current safety and privacy setup</div></div></div>
+   <div class="chat-top"><button class="back" onclick="mosaicBack()">‹</button><div><b>Safety centre</b><div class="small">Your current safety and privacy setup</div></div></div>
    <div class="card">
     <div class="row gap"><div class="score-ring"><div class="score-inner">92</div></div><div><div class="section-title" style="margin-bottom:4px">Strong safety setup</div><div class="small">Key controls are enabled. The score is a presentation aid, not a security certification.</div></div></div>
    </div>
@@ -320,7 +320,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
   </section>
 
   <section id="privacyCenter" class="screen">
-   <div class="chat-top"><button class="back" onclick="show('settings')">‹</button><div><b>Privacy centre</b><div class="small">See, export and delete prototype data</div></div></div>
+   <div class="chat-top"><button class="back" onclick="mosaicBack()">‹</button><div><b>Privacy centre</b><div class="small">See, export and delete prototype data</div></div></div>
    <div class="card">
     <div class="section-title">Your controls</div>
     <div class="earlier">
@@ -338,7 +338,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
   </section>
 
   <section id="chat" class="screen">
-   <div class="chat-top"><button type="button" class="back" onclick="show('groups')">‹</button><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><div><b id="chatGroupName">Group chat</b><div class="small" id="chatMembers"></div></div></div>
+   <div class="chat-top"><button type="button" class="back" onclick="mosaicBack()">‹</button><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><div><b id="chatGroupName">Group chat</b><div class="small" id="chatMembers"></div></div></div>
    <div id="chatEventBanner"></div>
    <div class="small" id="chatMatchNote" style="text-align:center;margin:11px 0"></div>
    <div id="messages"></div>
@@ -346,7 +346,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
   </section>
 
   <section id="find" class="screen">
-   <div class="chat-top"><button class="back" onclick="show('chat')">‹</button><div><b>Find each other</b><div class="small">Night market · Saturday 6 pm</div></div></div>
+   <div class="chat-top"><button class="back" onclick="mosaicBack()">‹</button><div><b>Find each other</b><div class="small">Night market · Saturday 6 pm</div></div></div>
    <div class="map" style="height:365px;margin-top:15px"><div class="block a"></div><div class="block b"></div><div class="block c"></div><div class="block d"></div><div class="road a"></div><div class="road b"></div><div class="road c"></div><div class="pin coral" style="left:20%;top:22%">M</div><div class="pin gold" style="right:17%;top:33%">P</div><div class="pin mint" style="left:44%;top:44%;outline:3px solid var(--mint);outline-offset:6px">You</div><div class="pin lav" style="right:26%;bottom:18%">S</div></div>
    <div class="card">
     <span class="badge mint">Available because all 4 RSVP'd</span>
@@ -438,7 +438,47 @@ const groupChats={
 };
 let activeChatGroup='saturday';
 
-let authMode='signin', currentLegal='terms', eventMode='week', sharing=false, seconds=3600, timer=null, previousMain='groups';
+let authMode='signin', currentLegal='terms', eventMode='week', sharing=false, seconds=3600, timer=null, previousMain='groups', currentScreen='groups';
+
+const screenParents={
+ eventDetail:'events',
+ chat:'groups',
+ find:'chat',
+ privacyCenter:'settings',
+ sourceManager:'settings',
+ blockedUsers:'settings',
+ helpCenter:'settings',
+ safetyCenter:'settings'
+};
+
+function getActiveScreen(){
+ const active=document.querySelector('.screen.active');
+ return active ? active.id : currentScreen;
+}
+
+function mosaicBack(){
+ const legal=document.getElementById('legal');
+ if(legal && legal.classList.contains('open')){closeLegal();return true}
+ const modal=document.getElementById('modal');
+ if(modal && modal.classList.contains('open')){closeModal();return true}
+ const onboard=document.getElementById('onboard');
+ if(onboard && onboard.classList.contains('show')){toast('Complete setup or sign out before leaving this screen');return true}
+ const auth=document.getElementById('auth');
+ if(auth && !auth.classList.contains('hidden')) return false;
+
+ const active=getActiveScreen();
+ if(active==='settings'){show(previousMain && previousMain!=='settings' ? previousMain : 'profile',true);return true}
+ const parent=screenParents[active];
+ if(parent){show(parent,true);return true}
+ return false;
+}
+window.mosaicHandleAndroidBack=mosaicBack;
+
+window.addEventListener('popstate',function(){
+ if(!mosaicBack()){
+   history.pushState({mosaic:true,screen:getActiveScreen()},'',location.href);
+ }
+});
 
 function safeJson(key,fallback){try{return JSON.parse(localStorage.getItem(key)) ?? fallback}catch(e){return fallback}}
 function setAuthMode(mode){authMode=mode;document.getElementById('signinTab').classList.toggle('active',mode==='signin');document.getElementById('signupTab').classList.toggle('active',mode==='signup');document.getElementById('nameField').classList.toggle('hidden',mode!=='signup');document.getElementById('authHeading').textContent=mode==='signin'?'Welcome back':'Create your MosAIc account';document.getElementById('authBtn').textContent=mode==='signin'?'Sign in':'Create account'}
@@ -460,16 +500,19 @@ function logout(){localStorage.removeItem('mosaic_session');document.getElementB
 function applyUser(){const u=safeJson('mosaic_session',{name:'Alex',email:'alex.demo@mosaic.app'});['profileName','settingsName'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.name});['profileEmail','settingsEmail'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.email});const pi=document.getElementById('profileInitial');if(pi)pi.textContent=(u.name||'A').trim()[0].toUpperCase()}
 
 function checkConsent(){const ok=['agree1','agree2','agree3'].every(x=>document.getElementById(x).checked);const b=document.getElementById('continue');b.disabled=!ok;b.style.opacity=ok?'1':'.45'}
-function acceptConsent(){localStorage.setItem('mosaic_consent',JSON.stringify({acceptedAt:new Date().toISOString(),version:'5.0'}));document.getElementById('onboard').classList.remove('show')}
+function acceptConsent(){localStorage.setItem('mosaic_consent',JSON.stringify({acceptedAt:new Date().toISOString(),version:'5.1'}));document.getElementById('onboard').classList.remove('show')}
 function openSettings(){show('settings')}
-function show(id){
+function show(id,fromBack){
  const target=document.getElementById(id);
  if(!target){toast('This screen is unavailable in the current build');return}
  if(['groups','people','events','careers','profile'].includes(id))previousMain=id;
  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));target.classList.add('active');
+ currentScreen=id;
  if(id==='people')renderPeople();if(id==='events'){renderEvents();renderPlaces()}if(id==='sourceManager')renderSourceManager();if(id==='blockedUsers')renderBlockedUsers();if(id==='helpCenter')restoreLastTicket();if(id==='safetyCenter')restoreSettings();
  const special=['chat','find','eventDetail','settings','privacyCenter','sourceManager','blockedUsers','helpCenter','safetyCenter'].includes(id);document.getElementById('nav').style.display=special?'none':'grid';
- document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo({top:0,behavior:'smooth'})
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));
+ if(!fromBack && special && location.protocol.startsWith('http')) history.pushState({mosaic:true,screen:id},'',location.href);
+ window.scrollTo({top:0,behavior:'smooth'})
 }
 
 function setPeopleFilter(btn,mode){peopleFilter=mode;document.querySelectorAll('[data-people-filter]').forEach(function(x){x.classList.remove('active')});btn.classList.add('active');renderPeople()}
@@ -624,7 +667,7 @@ function editProfile(){const u=safeJson('mosaic_session',{name:'Alex',email:'ale
 function saveProfile(){const name=document.getElementById('editName').value.trim(),email=document.getElementById('editEmail').value.trim();if(!name||!email.includes('@')){toast('Enter a name and valid email');return}localStorage.setItem('mosaic_session',JSON.stringify({name,email}));applyUser();closeModal();toast('Profile updated')}
 function exportData(){const payload={app:'MosAIc prototype',version:'3.0',exportedAt:new Date().toISOString(),session:safeJson('mosaic_session',null),consent:safeJson('mosaic_consent',null),settings:Object.fromEntries(Object.keys(localStorage).filter(k=>k.startsWith('mosaic_setting_')).map(k=>[k,localStorage.getItem(k)])),note:'Synthetic prototype data only'};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));a.download='mosaic-prototype-data.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800)}
 function deleteAppData(){if(confirm('Delete all MosAIc prototype data stored in this browser?')){localStorage.clear();location.reload()}}
-function showAbout(){document.getElementById('modalBody').innerHTML=`<div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div><div class="heading" style="font-size:25px;margin-top:18px">From interests to real connections.</div><p class="sub">Version 5.0 advanced university prototype. MosAIc explores how user-approved interest signals could support groups, real-world events and career opportunities instead of another endless content feed.</p><div class="callout good">All people, jobs, event venues and connected-source data in this build are fictional demonstration content.</div>`;openModal()}
+function showAbout(){document.getElementById('modalBody').innerHTML=`<div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div><div class="heading" style="font-size:25px;margin-top:18px">From interests to real connections.</div><p class="sub">Version 5.1 advanced university prototype. MosAIc explores how user-approved interest signals could support groups, real-world events and career opportunities instead of another endless content feed.</p><div class="callout good">All people, jobs, event venues and connected-source data in this build are fictional demonstration content.</div>`;openModal()}
 
 function openModal(){document.getElementById('modal').classList.add('open')}function closeModal(){document.getElementById('modal').classList.remove('open')}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),2100)}
@@ -658,6 +701,7 @@ function boot(){
  if(s){document.getElementById('auth').classList.add('hidden');applyUser();if(!localStorage.getItem('mosaic_consent'))document.getElementById('onboard').classList.add('show')}renderSourceManager();renderBlockedUsers();restoreLastTicket();
 }
 boot();
+if(location.protocol.startsWith('http')) history.replaceState({mosaic:true,screen:getActiveScreen()},'',location.href);
 
 </script>
 </body>
