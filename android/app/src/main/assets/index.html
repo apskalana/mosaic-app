@@ -102,7 +102,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
  <header class="topbar">
   <div class="row">
    <div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div>
-   <button class="iconbtn" onclick="show('settings')" aria-label="Settings">⚙</button>
+   <button class="iconbtn" onclick="openSettings()" aria-label="Settings">⚙</button>
   </div>
  </header>
 
@@ -119,7 +119,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
     </div>
     <div class="small" style="margin-top:13px;font-weight:850">What you have in common</div>
     <div class="tags"><span class="tag coraltag">Indie film</span><span class="tag goldtag">Street food</span><span class="tag minttag">Pilates</span></div>
-    <button class="btn full" style="margin-top:13px" onclick="show('chat')">Open group chat</button>
+    <button type="button" class="btn full" style="margin-top:13px" onclick="openGroupChat('saturday')">Open group chat</button>
    </div>
 
    <div class="event-banner" onclick="openEvent('night')">
@@ -128,8 +128,8 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
 
    <div class="small" style="font-weight:850;margin:15px 0 8px">Earlier groups</div>
    <div class="earlier">
-    <div class="earlier-row"><div class="row gap"><div class="people-stack"><div class="avatar lavbg">J</div><div class="avatar goldbg">K</div></div><span>Sunday run club</span></div><button class="btn ghost sm" onclick="toast('Earlier group opened (demo)')">Chat</button></div>
-    <div class="earlier-row"><div class="row gap"><div class="people-stack"><div class="avatar mintbg">A</div><div class="avatar">T</div></div><span>Gallery opening crew</span></div><button class="btn ghost sm" onclick="toast('Earlier group opened (demo)')">Chat</button></div>
+    <button type="button" class="earlier-row setting-link" onclick="openGroupChat('run')"><div class="row gap"><div class="people-stack"><div class="avatar lavbg">J</div><div class="avatar goldbg">K</div></div><div><b>Sunday run club</b><div class="small">Running · coffee · local parks</div></div></div><span class="badge lav">Chat ›</span></button>
+    <button type="button" class="earlier-row setting-link" onclick="openGroupChat('gallery')"><div class="row gap"><div class="people-stack"><div class="avatar mintbg">A</div><div class="avatar">T</div></div><div><b>Gallery opening crew</b><div class="small">Art · design · live events</div></div></div><span class="badge coral">Chat ›</span></button>
    </div>
   </section>
 
@@ -171,7 +171,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
     <div class="section-title">Group preference</div>
     <div class="pref-grid"><button class="pref active" onclick="pickPref(this)">Mixed</button><button class="pref" onclick="pickPref(this)">Women only</button><button class="pref" onclick="pickPref(this)">Men only</button></div>
    </div>
-   <button class="btn secondary full" onclick="show('settings')">Open settings</button>
+   <button type="button" class="btn secondary full" style="margin:4px 0 22px" onclick="openSettings()">⚙ Settings & privacy</button>
   </section>
 
   <section id="settings" class="screen">
@@ -221,7 +221,7 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
     <button class="setting-link setting-row" onclick="show('blockedUsers')"><div><b>Blocked users</b><div class="small">Review, unblock and manage safety actions.</div></div><span>›</span></button>
     <button class="setting-link setting-row" onclick="show('helpCenter')"><div><b>Help centre</b><div class="small">FAQs, support tickets and safety reporting.</div></div><span>›</span></button>
     <button class="setting-link setting-row" onclick="show('safetyCenter')"><div><b>Safety centre</b><div class="small">Review your safety setup and controls.</div></div><span>›</span></button>
-    <button class="setting-link setting-row" onclick="showAbout()"><div><b>About MosAIc</b><div class="small">Version 4.0 · advanced university prototype.</div></div><span>›</span></button>
+    <button class="setting-link setting-row" onclick="showAbout()"><div><b>About MosAIc</b><div class="small">Version 4.1 · advanced university prototype.</div></div><span>›</span></button>
    </div>
 
    <button class="btn danger full" onclick="logout()">Log out</button>
@@ -309,15 +309,11 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
   </section>
 
   <section id="chat" class="screen">
-   <div class="chat-top"><button class="back" onclick="show('groups')">‹</button><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><div><b>Saturday night crew</b><div class="small">Maya, Priya, Sam and you</div></div></div>
-   <div class="chat-event"><div><b>Night market, Saturday 6 pm</b><div style="font-size:11px;margin-top:3px">Everyone is going. You can choose to share location for 1 hour at the event.</div></div><button class="btn dark sm" onclick="show('find')">Find each other</button></div>
-   <div id="messages">
-    <div class="message-wrap"><div class="sender maya">Maya</div><div class="bubble">Anyone else heading to the night market on Saturday?</div></div>
-    <div class="message-wrap"><div class="bubble mine">Yes! I'm planning to get there around 6.</div></div>
-    <div class="message-wrap"><div class="sender priya">Priya</div><div class="bubble">Same. It's going to be packed though, how will we find each other?</div></div>
-    <div class="message-wrap"><div class="sender sam">Sam</div><div class="bubble">That's what the location share is for. Tap the banner when you arrive.</div></div>
-   </div>
-   <div class="composer"><input id="messageInput" placeholder="Message the group"><button class="send" onclick="sendMessage()">➤</button></div>
+   <div class="chat-top"><button type="button" class="back" onclick="show('groups')">‹</button><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><div><b id="chatGroupName">Group chat</b><div class="small" id="chatMembers"></div></div></div>
+   <div id="chatEventBanner"></div>
+   <div class="small" id="chatMatchNote" style="text-align:center;margin:11px 0"></div>
+   <div id="messages"></div>
+   <div class="composer"><input id="messageInput" placeholder="Message the group" onkeydown="if(event.key==='Enter')sendMessage()"><button type="button" class="send" onclick="sendMessage()">➤</button></div>
   </section>
 
   <section id="find" class="screen">
@@ -355,6 +351,47 @@ const jobs=[
  {id:'events',title:'Events and Community Coordinator',company:'Neighbourhood Collective',location:'Parramatta',badge:'events, live music',tone:'mint',why:['Live music','Events','Community'],draft:'Draft application highlights group coordination, event interest and community engagement.'},
  {id:'marketing',title:'Marketing and Communications Assistant',company:'Northside Studio',location:'Sydney',badge:'marketing',tone:'lav',why:['Marketing','Product design'],draft:'Draft application highlights marketing interest and multidisciplinary collaboration.'}
 ];
+
+const groupChats={
+ saturday:{
+  name:'Saturday night crew',
+  members:'Maya, Priya, Sam and you',
+  note:'Matched this week from 3 shared interests',
+  event:{title:'Night market, Saturday 6 pm',text:'Everyone is going. You can choose to share location for 1 hour at the event.',action:'find'},
+  messages:[
+   {sender:'Maya',tone:'maya',text:'Anyone else heading to the night market on Saturday?'},
+   {mine:true,text:"Yes! I'm planning to get there around 6."},
+   {sender:'Priya',tone:'priya',text:"Same. It's going to be packed though, how will we find each other?"},
+   {sender:'Sam',tone:'sam',text:"That's what the location share is for. Tap the banner when you arrive."}
+  ]
+ },
+ run:{
+  name:'Sunday run club',
+  members:'Jordan, Kai and you',
+  note:'Earlier group · matched from running, coffee and local parks',
+  event:{title:'Sunday run, 8:00 am',text:'Easy 5 km loop at Parramatta Park. Meet at the George Street Gate.',action:'runInfo'},
+  messages:[
+   {sender:'Jordan',tone:'sam',text:'Are we still good for the easy 5k this Sunday?'},
+   {sender:'Kai',tone:'priya',text:'Yep. I can get there around 7:50.'},
+   {mine:true,text:'Works for me. Easy pace and coffee after?'},
+   {sender:'Jordan',tone:'sam',text:'Definitely. I saved a cafe near the park for after the run.'}
+  ]
+ },
+ gallery:{
+  name:'Gallery opening crew',
+  members:'Ava, Theo and you',
+  note:'Earlier group · matched from art, product design and live events',
+  event:{title:'Gallery opening, Friday 7:00 pm',text:'Meet in the foyer 10 minutes before the opening talk.',action:'galleryInfo'},
+  messages:[
+   {sender:'Ava',tone:'maya',text:'The opening talk starts at 7:15. Want to meet near the entrance first?'},
+   {sender:'Theo',tone:'priya',text:'Yep, I should be there just before 7.'},
+   {mine:true,text:'Sounds good. I will message here when I arrive.'},
+   {sender:'Ava',tone:'maya',text:'Perfect — I will keep an eye on the group chat.'}
+  ]
+ }
+};
+let activeChatGroup='saturday';
+
 let authMode='signin', currentLegal='terms', eventMode='week', sharing=false, seconds=3600, timer=null, previousMain='groups';
 
 function safeJson(key,fallback){try{return JSON.parse(localStorage.getItem(key)) ?? fallback}catch(e){return fallback}}
@@ -377,10 +414,13 @@ function logout(){localStorage.removeItem('mosaic_session');document.getElementB
 function applyUser(){const u=safeJson('mosaic_session',{name:'Alex',email:'alex.demo@mosaic.app'});['profileName','settingsName'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.name});['profileEmail','settingsEmail'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.email});const pi=document.getElementById('profileInitial');if(pi)pi.textContent=(u.name||'A').trim()[0].toUpperCase()}
 
 function checkConsent(){const ok=['agree1','agree2','agree3'].every(x=>document.getElementById(x).checked);const b=document.getElementById('continue');b.disabled=!ok;b.style.opacity=ok?'1':'.45'}
-function acceptConsent(){localStorage.setItem('mosaic_consent',JSON.stringify({acceptedAt:new Date().toISOString(),version:'4.0'}));document.getElementById('onboard').classList.remove('show')}
+function acceptConsent(){localStorage.setItem('mosaic_consent',JSON.stringify({acceptedAt:new Date().toISOString(),version:'4.1'}));document.getElementById('onboard').classList.remove('show')}
+function openSettings(){show('settings')}
 function show(id){
+ const target=document.getElementById(id);
+ if(!target){toast('This screen is unavailable in the current build');return}
  if(['groups','events','careers','profile'].includes(id))previousMain=id;
- document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));target.classList.add('active');
  if(id==='sourceManager')renderSourceManager();if(id==='blockedUsers')renderBlockedUsers();if(id==='helpCenter')restoreLastTicket();if(id==='safetyCenter')restoreSettings();
  const special=['chat','find','eventDetail','settings','privacyCenter','sourceManager','blockedUsers','helpCenter','safetyCenter'].includes(id);document.getElementById('nav').style.display=special?'none':'grid';
  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo({top:0,behavior:'smooth'})
@@ -396,7 +436,7 @@ function openEvent(id){
  <div class="card"><div class="section-title">About this event</div><p class="sub" style="color:#d7d3e9">${e.desc}</p><div class="kv"><b>Venue</b><span>${e.venue}</span></div><div class="kv"><b>Price</b><span>${e.price}</span></div><div class="kv"><b>Access</b><span>${e.access}</span></div></div>
  <div class="card"><div class="section-title">Host</div><div class="host"><div class="hostlogo">${e.host[0]}</div><div><b>${e.host}</b><div class="small">Fictional verified host for prototype demonstration</div></div></div></div>
  <div class="card"><div class="section-title">Schedule</div>${e.agenda.map(x=>`<div class="kv"><b>•</b><span>${x}</span></div>`).join('')}</div>
- <div class="card"><div class="section-title">Your group</div><div class="row between"><div class="people-stack"><div class="avatar">M</div><div class="avatar goldbg">P</div><div class="avatar lavbg">S</div><div class="avatar mintbg">Y</div></div><span class="badge mint">${e.id==='night'?'4 going':e.group}</span></div>${e.id==='night'?`<button class="btn full" style="margin-top:12px" onclick="show('chat')">Open group chat</button><button class="btn secondary full" style="margin-top:8px" onclick="show('find')">Find each other at event</button>`:''}</div>
+ <div class="card"><div class="section-title">Your group</div><div class="row between"><div class="people-stack"><div class="avatar">M</div><div class="avatar goldbg">P</div><div class="avatar lavbg">S</div><div class="avatar mintbg">Y</div></div><span class="badge mint">${e.id==='night'?'4 going':e.group}</span></div>${e.id==='night'?`<button class="btn full" style="margin-top:12px" onclick="openGroupChat('saturday')">Open group chat</button><button class="btn secondary full" style="margin-top:8px" onclick="show('find')">Find each other at event</button>`:''}</div>
  <div class="callout warn"><b>Safety:</b> ${e.safety}</div>
  <div class="row gap" style="margin-top:13px"><button class="btn secondary grow" onclick="downloadCalendar('${e.id}')">Add to calendar</button><button class="btn grow" onclick="toast('RSVP saved for ${e.name}')">${e.id==='night'?'Going ✓':'RSVP'}</button></div>`;
  show('eventDetail')
@@ -412,7 +452,36 @@ function openJob(id){
 }
 function showInterestSources(){document.getElementById('modalBody').innerHTML=`<div class="heading" style="font-size:25px">Why am I seeing these?</div><div class="sub">MosAIc should make source and control visible.</div><div class="earlier" style="margin-top:14px"><div class="earlier-row"><div><b>Indie film</b><div class="small">Synthetic Instagram signal</div></div><button class="btn ghost sm" onclick="toast('Removed from demo')">Remove</button></div><div class="earlier-row"><div><b>Street food</b><div class="small">Synthetic TikTok signal</div></div><button class="btn ghost sm" onclick="toast('Removed from demo')">Remove</button></div><div class="earlier-row"><div><b>Product design</b><div class="small">Synthetic LinkedIn signal</div></div><button class="btn ghost sm" onclick="toast('Removed from demo')">Remove</button></div></div>`;openModal()}
 function pickPref(btn){document.querySelectorAll('.pref').forEach(x=>x.classList.remove('active'));btn.classList.add('active');toast('Preference updated')}
-function sendMessage(){const i=document.getElementById('messageInput');if(!i.value.trim())return;const w=document.createElement('div');w.className='message-wrap';const b=document.createElement('div');b.className='bubble mine';b.textContent=i.value.trim();w.appendChild(b);document.getElementById('messages').appendChild(w);i.value='';toast('Message added locally')}
+
+function openGroupChat(id){
+ if(!groupChats[id]){toast('Group chat could not be loaded');return}
+ activeChatGroup=id;renderGroupChat();show('chat')
+}
+function renderGroupChat(){
+ const g=groupChats[activeChatGroup]||groupChats.saturday;
+ const name=document.getElementById('chatGroupName'),members=document.getElementById('chatMembers'),note=document.getElementById('chatMatchNote'),banner=document.getElementById('chatEventBanner'),messages=document.getElementById('messages');
+ if(name)name.textContent=g.name;if(members)members.textContent=g.members;if(note)note.textContent=g.note;
+ if(banner){
+   let action='';
+   if(g.event.action==='find')action="<button type=\"button\" class=\"btn dark sm\" onclick=\"show('find')\">Find each other</button>";
+   else action="<button type=\"button\" class=\"btn dark sm\" onclick=\"showGroupMeetupInfo('"+activeChatGroup+"')\">Meetup details</button>";
+   banner.innerHTML='<div class="chat-event"><div><b>'+g.event.title+'</b><div style="font-size:11px;margin-top:3px">'+g.event.text+'</div></div>'+action+'</div>';
+ }
+ if(messages)messages.innerHTML=g.messages.map(function(m){
+  if(m.mine)return '<div class="message-wrap"><div class="bubble mine">'+escapeHtml(m.text)+'</div></div>';
+  return '<div class="message-wrap"><div class="sender '+(m.tone||'sam')+'">'+escapeHtml(m.sender)+'</div><div class="bubble">'+escapeHtml(m.text)+'</div></div>';
+ }).join('');
+ const input=document.getElementById('messageInput');if(input)input.value='';
+}
+function showGroupMeetupInfo(id){
+ const g=groupChats[id];if(!g)return;
+ const extra=id==='run'
+  ?'<div class="kv"><b>Meet point</b><span>George Street Gate, Parramatta Park</span></div><div class="kv"><b>Plan</b><span>Easy 5 km loop · coffee afterwards</span></div>'
+  :'<div class="kv"><b>Meet point</b><span>Main gallery foyer</span></div><div class="kv"><b>Plan</b><span>Opening talk · exhibition walkthrough · optional drinks afterwards</span></div>';
+ document.getElementById('modalBody').innerHTML='<div class="tiny" style="color:#bca8ff;text-transform:uppercase;letter-spacing:.14em;font-weight:900">Group meetup</div><div class="heading" style="font-size:25px">'+g.event.title+'</div><p class="sub">'+g.event.text+'</p><div class="card no-shadow">'+extra+'<div class="kv"><b>Group</b><span>'+g.members+'</span></div></div><div class="callout good">This is a fictional earlier-group meetup used to make the prototype flow fully interactive.</div><button class="btn full" style="margin-top:12px" onclick="closeModal()">Done</button>';openModal()
+}
+
+function sendMessage(){const i=document.getElementById('messageInput');if(!i||!i.value.trim())return;const text=i.value.trim();const g=groupChats[activeChatGroup]||groupChats.saturday;g.messages.push({mine:true,text});const w=document.createElement('div');w.className='message-wrap';const b=document.createElement('div');b.className='bubble mine';b.textContent=text;w.appendChild(b);document.getElementById('messages').appendChild(w);i.value='';w.scrollIntoView({behavior:'smooth',block:'nearest'});toast('Message added locally')}
 function toggleShare(){sharing=!sharing;const b=document.getElementById('shareBtn'),l=document.getElementById('shareLabel');if(sharing){seconds=3600;l.textContent='Sharing with your group';b.textContent='Stop sharing';b.className='btn danger full';clearInterval(timer);timer=setInterval(()=>{seconds--;drawTimer();if(seconds<=0){sharing=false;clearInterval(timer);setShareOff()}},1000);drawTimer();toast('Demo sharing started')}else{clearInterval(timer);setShareOff();toast('Location sharing stopped')}}
 function setShareOff(){document.getElementById('shareLabel').textContent='Location sharing is off';const b=document.getElementById('shareBtn');b.textContent='Start sharing for 1 hour';b.className='btn ghost full';document.getElementById('shareTimer').textContent=''}
 function drawTimer(){let m=Math.floor(seconds/60),s=seconds%60;document.getElementById('shareTimer').textContent=`${m}:${String(s).padStart(2,'0')} left`}
@@ -482,7 +551,7 @@ function editProfile(){const u=safeJson('mosaic_session',{name:'Alex',email:'ale
 function saveProfile(){const name=document.getElementById('editName').value.trim(),email=document.getElementById('editEmail').value.trim();if(!name||!email.includes('@')){toast('Enter a name and valid email');return}localStorage.setItem('mosaic_session',JSON.stringify({name,email}));applyUser();closeModal();toast('Profile updated')}
 function exportData(){const payload={app:'MosAIc prototype',version:'3.0',exportedAt:new Date().toISOString(),session:safeJson('mosaic_session',null),consent:safeJson('mosaic_consent',null),settings:Object.fromEntries(Object.keys(localStorage).filter(k=>k.startsWith('mosaic_setting_')).map(k=>[k,localStorage.getItem(k)])),note:'Synthetic prototype data only'};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));a.download='mosaic-prototype-data.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800)}
 function deleteAppData(){if(confirm('Delete all MosAIc prototype data stored in this browser?')){localStorage.clear();location.reload()}}
-function showAbout(){document.getElementById('modalBody').innerHTML=`<div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div><div class="heading" style="font-size:25px;margin-top:18px">From interests to real connections.</div><p class="sub">Version 4.0 advanced university prototype. MosAIc explores how user-approved interest signals could support groups, real-world events and career opportunities instead of another endless content feed.</p><div class="callout good">All people, jobs, event venues and connected-source data in this build are fictional demonstration content.</div>`;openModal()}
+function showAbout(){document.getElementById('modalBody').innerHTML=`<div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div><div class="heading" style="font-size:25px;margin-top:18px">From interests to real connections.</div><p class="sub">Version 4.1 advanced university prototype. MosAIc explores how user-approved interest signals could support groups, real-world events and career opportunities instead of another endless content feed.</p><div class="callout good">All people, jobs, event venues and connected-source data in this build are fictional demonstration content.</div>`;openModal()}
 
 function openModal(){document.getElementById('modal').classList.add('open')}function closeModal(){document.getElementById('modal').classList.remove('open')}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),2100)}
@@ -511,7 +580,7 @@ function closeLegal(){document.getElementById('legal').classList.remove('open');
 function acceptLegal(){document.getElementById(currentLegal==='terms'?'agree1':'agree2').checked=true;closeLegal();checkConsent()}
 
 function boot(){
- renderEvents();renderJobs();restoreSettings();
+ renderEvents();renderJobs();restoreSettings();renderGroupChat();
  const s=safeJson('mosaic_session',null);
  if(s){document.getElementById('auth').classList.add('hidden');applyUser();if(!localStorage.getItem('mosaic_consent'))document.getElementById('onboard').classList.add('show')}renderSourceManager();renderBlockedUsers();restoreLastTicket();
 }
