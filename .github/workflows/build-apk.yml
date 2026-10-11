@@ -39,7 +39,7 @@ jobs:
         run: ./gradlew --no-daemon --max-workers=2 assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: MosAIc-v4-debug-apk
+          name: MosAIc-v4.1-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 14
