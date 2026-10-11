@@ -1,7 +1,7 @@
 {
   "name": "MosAIc",
   "short_name": "MosAIc",
-  "description": "Groups, events and career opportunities from user-approved interests.",
+  "description": "Advanced MosAIc prototype for groups, events, career opportunities, privacy controls and safety tools.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
