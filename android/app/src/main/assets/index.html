@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0825">
+<meta name="description" content="MosAIc prototype — groups, events, careers and real-world connections from user-approved interests.">
+<title>MosAIc</title>
+
+<style>
+:root{
+ --bg:#0b0825;--bg2:#100c31;--panel:#1d174b;--panel2:#261f62;--line:#3b3278;
+ --text:#fff;--muted:#aba6c5;--mint:#42dec0;--coral:#ff746c;--gold:#ffc04a;--lav:#8e7cf8;
+ --danger:#ff6374;--shadow:0 18px 55px rgba(0,0,0,.28)
+}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#07051a;color:var(--text)}
+body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.shell{width:min(100%,470px);margin:0 auto;min-height:100vh;background:linear-gradient(180deg,var(--bg),#0d0a2b);position:relative;padding-bottom:85px;overflow-x:hidden}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(11,8,37,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.04);padding:14px 17px 11px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px}.mosaic-icon{width:34px;height:34px;border-radius:11px;background:#15113e;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:4px;border:1px solid #302863}.mosaic-icon i{border-radius:4px}.mosaic-icon i:nth-child(1){background:var(--coral)}.mosaic-icon i:nth-child(2){background:var(--gold)}.mosaic-icon i:nth-child(3){background:var(--mint)}.mosaic-icon i:nth-child(4){background:var(--lav)}
+.iconbtn{margin-left:auto;border:1px solid #443889;background:#211a58;color:#fff;border-radius:12px;width:38px;height:38px;display:grid;place-items:center;font-size:18px}
+.content{padding:18px 16px}.screen{display:none}.screen.active{display:block}.heading{font-size:31px;line-height:1.06;letter-spacing:-1px;font-weight:900;margin:5px 0 6px}.sub{font-size:13px;color:var(--muted);line-height:1.5}.section-title{font-size:17px;font-weight:900;margin:0 0 10px}.small{font-size:12px;color:var(--muted)}.tiny{font-size:10.5px;color:#928daa}
+.row{display:flex;align-items:center}.between{justify-content:space-between}.gap{gap:10px}.wrap{flex-wrap:wrap}.grow{flex:1}
+.card{background:linear-gradient(180deg,#211a58,#1a1649);border:1px solid var(--line);border-radius:21px;padding:15px;box-shadow:var(--shadow);margin:13px 0}.card.no-shadow{box-shadow:none}
+.btn{border:0;border-radius:13px;padding:12px 14px;font-weight:900;background:var(--mint);color:#09211b}.btn.secondary{background:#261f61;color:#fff;border:1px solid #483d8c}.btn.ghost{background:transparent;color:#e7e3ff;border:1px solid #483d8c}.btn.danger{background:rgba(255,99,116,.12);color:#ffd2d8;border:1px solid rgba(255,99,116,.35)}.btn.dark{background:#15102f;color:#fff}.btn.sm{padding:8px 10px;font-size:11px;border-radius:10px}.btn.full{width:100%}
+.badge{display:inline-flex;align-items:center;padding:6px 9px;border-radius:9px;font-size:10.5px;font-weight:900}.mint{background:var(--mint);color:#09211b}.coral{background:var(--coral);color:#2a100f}.gold{background:var(--gold);color:#251800}.lav{background:var(--lav);color:#100b2a}
+.source-row{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}.source-chip{background:#211a58;border:1px solid #3f347f;color:#e9e5ff;padding:8px 11px;border-radius:999px;font-size:11px;font-weight:800}.source-chip strong{color:var(--mint)}
+.people-stack{display:flex}.avatar{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-weight:900;background:var(--coral);color:#27100f}.avatar.goldbg{background:var(--gold)}.avatar.mintbg{background:var(--mint)}.avatar.lavbg{background:var(--lav);color:#100b2a}.people-stack .avatar{width:36px;height:36px;font-size:12px;margin-left:-7px;border:3px solid #211a58}.people-stack .avatar:first-child{margin-left:0}
+.group-title{font-size:20px;font-weight:900}.meta{color:var(--muted);font-size:11.5px;margin-top:3px}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.tag{font-size:11px;font-weight:850;border-radius:10px;padding:7px 9px;background:#302768;border:1px solid #493c92}.tag.minttag{background:var(--mint);color:#09211b;border:0}.tag.coraltag{background:var(--coral);color:#27100f;border:0}.tag.goldtag{background:var(--gold);color:#261900;border:0}.tag.lavtag{background:var(--lav);color:#100b2a;border:0}
+.event-banner{background:var(--gold);color:#291900;border-radius:18px;padding:14px;margin:14px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}.event-banner .locbox{width:43px;height:43px;border-radius:12px;background:#16102e;color:#ffcc61;display:grid;place-items:center;font-size:20px}
+.earlier{overflow:hidden;border:1px solid #393073;border-radius:17px;background:#211a58}.earlier-row{display:flex;align-items:center;justify-content:space-between;padding:12px;border-bottom:1px solid #393073;gap:10px}.earlier-row:last-child{border-bottom:0}
+.callout{padding:11px 12px;border-radius:12px;background:#121032;border:1px solid #312965;color:#c9c5df;font-size:11.5px;line-height:1.52}.callout.good{background:rgba(66,222,192,.07);border-color:rgba(66,222,192,.33);color:#c7fff4}.callout.warn{background:rgba(255,192,74,.07);border-color:rgba(255,192,74,.3);color:#ffe7af}
+.tabs{display:flex;gap:8px;margin:13px 0}.tabs button{flex:1;border:1px solid #403680;background:#211a58;color:#ede9ff;border-radius:12px;padding:9px 6px;font-size:10.5px;font-weight:900}.tabs button.active{background:var(--mint);color:#09211b;border-color:transparent}
+.map{height:230px;background:linear-gradient(145deg,rgba(66,222,192,.14),transparent 38%),linear-gradient(20deg,rgba(143,124,248,.16),transparent 58%),#17113e;border:1px solid #3b3278;border-radius:19px;position:relative;overflow:hidden}.road{height:10px;background:#443993;opacity:.55;position:absolute;border-radius:999px}.road.a{width:130%;left:-10%;top:55%;transform:rotate(-5deg)}.road.b{width:115%;left:-5%;top:32%;transform:rotate(96deg)}.road.c{width:110%;left:2%;top:79%;transform:rotate(-11deg)}.block{position:absolute;background:#211b57;border-radius:12px}.block.a{left:24px;top:22px;width:72px;height:56px}.block.b{right:31px;top:18px;width:105px;height:69px;background:#174b47}.block.c{left:31px;bottom:22px;width:83px;height:65px}.block.d{right:39px;bottom:17px;width:91px;height:59px}.pin{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;position:absolute;border:3px solid #0c0926;font-weight:900;box-shadow:0 8px 18px rgba(0,0,0,.3)}
+.list-card{background:#211a58;border:1px solid #3b3278;border-radius:17px;padding:14px;margin:10px 0}.list-card h3{margin:0;font-size:16px}.list-card p{margin:4px 0 0;color:var(--muted);font-size:11.5px}
+.job-card h3{margin:0;font-size:18px}.job-meta{color:var(--muted);font-size:11.5px;margin:4px 0 10px}.job-actions{display:grid;grid-template-columns:90px 1fr;gap:9px;margin-top:10px}
+.profile-head{display:flex;align-items:center;gap:13px}.big-avatar{width:68px;height:68px;border-radius:20px;background:var(--coral);color:#29100f;font-size:31px;font-weight:900;display:grid;place-items:center}.profile-name{font-size:29px;font-weight:900}.person-row{display:flex;gap:14px}.person{text-align:center}.person .avatar{margin:auto}.person span{font-size:10px;color:var(--muted)}
+.pref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.pref{border:1px solid #433887;background:#241e5d;color:#fff;border-radius:11px;padding:11px 6px;font-size:11px;font-weight:850}.pref.active{background:var(--mint);color:#09211b;border-color:transparent}
+.chat-top{display:flex;align-items:center;gap:10px;padding-bottom:13px;border-bottom:1px solid #342b6c}.back{border:0;background:transparent;color:#fff;font-size:28px;padding:0 4px}.chat-event{background:var(--gold);color:#2b1900;border-radius:18px;padding:14px;margin:16px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}.message-wrap{margin:15px 0}.sender{font-size:11px;font-weight:900;margin:0 0 5px 6px}.sender.maya{color:var(--mint)}.sender.priya{color:var(--gold)}.sender.sam{color:var(--lav)}.bubble{max-width:85%;font-size:14px;line-height:1.45;padding:12px 14px;border-radius:16px 16px 16px 5px;background:#2c2367}.bubble.mine{margin-left:auto;background:var(--mint);color:#082019;border-radius:16px 16px 5px 16px}.composer{display:flex;gap:8px;margin-top:22px}.composer input{flex:1;border:1px solid #443989;background:#241d59;color:#fff;border-radius:999px;padding:12px 14px}.send{width:46px;height:46px;border-radius:50%;border:0;background:var(--mint)}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:50;width:min(100%,470px);background:rgba(14,10,45,.98);border-top:1px solid #352c6d;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 6px calc(9px + env(safe-area-inset-bottom))}.nav button{border:0;background:transparent;color:#918ca9;font-size:9.5px;font-weight:800;border-radius:11px;padding:6px}.nav button.active{color:var(--mint)}.nav .ico{display:block;font-size:20px;margin-bottom:2px}
+.detail-hero{border-radius:22px;padding:18px;background:linear-gradient(145deg,#2b216b,#15113a);border:1px solid #453b88}.detail-hero h1{margin:8px 0 5px;font-size:29px;line-height:1.08}.kv{display:grid;grid-template-columns:95px 1fr;gap:9px 12px;font-size:12px;padding:11px 0;border-bottom:1px solid #332b6c}.kv:last-child{border-bottom:0}.kv b{color:#8e89aa}.host{display:flex;align-items:center;gap:10px}.hostlogo{width:42px;height:42px;border-radius:12px;background:var(--lav);display:grid;place-items:center;color:#110c2b;font-weight:900}
+.setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #393073}.setting-row:last-child{border-bottom:0}.switch{width:45px;height:25px;border:0;background:#443c69;border-radius:999px;padding:3px;position:relative}.switch::after{content:"";position:absolute;width:19px;height:19px;left:3px;top:3px;border-radius:50%;background:white;transition:.18s}.switch.on{background:var(--mint)}.switch.on::after{left:23px}.setting-link{width:100%;background:none;border:0;color:white;text-align:left;padding:0}.danger-text{color:#ff98a4}
+.input{width:100%;background:#16123d;border:1px solid #3d347a;border-radius:13px;padding:12px 13px;color:white;outline:none}.input:focus{border-color:var(--mint)}.field{margin:12px 0}.label{font-size:11px;font-weight:850;color:#c7c2de;margin-bottom:6px}
+.auth{position:fixed;inset:0;z-index:260;background:radial-gradient(circle at 20% 0,rgba(143,124,248,.28),transparent 35%),#090720;display:grid;place-items:center;padding:17px;overflow:auto}.auth.hidden{display:none}.authcard{width:min(100%,440px);background:#121036;border:1px solid #322a69;border-radius:27px;padding:21px;box-shadow:0 28px 80px rgba(0,0,0,.4)}.authcard h1{font-size:34px;line-height:1.05;margin:15px 0 8px}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.auth-tab{border:1px solid #443989;background:#211a58;color:#fff;border-radius:12px;padding:10px;font-weight:850}.auth-tab.active{background:var(--mint);color:#082019;border-color:transparent}
+.modal{position:fixed;inset:0;z-index:120;background:rgba(2,1,12,.78);display:none;align-items:flex-end;justify-content:center}.modal.open{display:flex}.sheet{width:min(100%,470px);max-height:90vh;overflow:auto;background:#100d31;border:1px solid #382f72;border-radius:26px 26px 0 0;padding:18px 17px 28px}.handle{width:45px;height:5px;border-radius:999px;background:#4d4384;margin:0 auto 14px}
+.toast{position:fixed;left:50%;bottom:90px;z-index:400;transform:translateX(-50%) translateY(12px);opacity:0;transition:.2s;background:#f5f3ff;color:#140f31;padding:11px 14px;border-radius:12px;font-size:11.5px;font-weight:900;max-width:min(90vw,420px);text-align:center}.toast.show{opacity:1;transform:translateX(-50%)}
+.onboard{position:fixed;inset:0;z-index:220;background:radial-gradient(circle at 20% 0,rgba(143,124,248,.27),transparent 34%),#090720;display:none;place-items:center;padding:17px;overflow:auto}.onboard.show{display:grid}.oncard{width:min(100%,440px);background:#121036;border:1px solid #322a69;border-radius:27px;padding:21px;box-shadow:0 28px 80px rgba(0,0,0,.4)}.oncard h1{font-size:34px;line-height:1.05;margin:15px 0 8px;letter-spacing:-1.1px}.oncard p{font-size:13px;line-height:1.55;color:#b8b3d2}.check{display:flex;gap:9px;align-items:flex-start;color:#dcd8ef;font-size:11.5px;line-height:1.45;margin:10px 0}.check input{accent-color:var(--mint);margin-top:3px}.link{border:0;background:none;color:#c2b5ff;padding:0;text-decoration:underline;font-weight:850}
+.legal{position:fixed;inset:0;z-index:300;background:#090720;display:none;flex-direction:column}.legal.open{display:flex}.legal-top{padding:13px 15px;border-bottom:1px solid #342b6c;background:#0d0a2b;display:flex;align-items:center;gap:8px}.legal-scroll{overflow:auto;padding:17px 15px 105px}.legal-section{background:#15113d;border:1px solid #332a69;border-radius:17px;padding:14px;margin-bottom:11px}.legal-section h3{margin:0 0 7px;font-size:15px}.legal-section p,.legal-section li{font-size:12.5px;line-height:1.55;color:#c9c5dd}.legal-bottom{position:fixed;bottom:0;left:0;right:0;background:#0d0a2b;border-top:1px solid #342b6c;padding:9px 13px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center}.legal-bottom>div{width:min(100%,470px);display:flex;gap:8px}.legal-bottom .btn{flex:1}
+@media(min-width:700px){body{padding:20px 0}.shell{min-height:calc(100vh - 40px);border:1px solid #302763;border-radius:28px;overflow:hidden}.nav{bottom:20px;border-radius:0 0 28px 28px}}
+</style>
+</head>
+<body>
+
+<div class="auth" id="auth">
+ <div class="authcard">
+  <div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div>
+  <h1 id="authHeading">Welcome back</h1>
+  <p class="sub" id="authSub">Sign in to continue to your groups, events and opportunities.</p>
+  <div class="auth-tabs"><button class="auth-tab active" id="signinTab" onclick="setAuthMode('signin')">Sign in</button><button class="auth-tab" id="signupTab" onclick="setAuthMode('signup')">Create account</button></div>
+  <div class="field"><div class="label">Email</div><input id="email" class="input" type="email" autocomplete="email" placeholder="alex@example.com"></div>
+  <div class="field"><div class="label">Password</div><input id="password" class="input" type="password" autocomplete="current-password" placeholder="••••••••"></div>
+  <div id="nameField" class="field hidden"><div class="label">Display name</div><input id="displayName" class="input" placeholder="Alex"></div>
+  <button class="btn full" onclick="submitAuth()" id="authBtn">Sign in</button>
+  <button class="btn ghost full" style="margin-top:9px" onclick="useDemoAccount()">Use demo account</button>
+  <div class="callout warn" style="margin-top:13px"><b>Prototype login:</b> credentials are stored only in this browser for demonstration. A production app needs a real authentication backend, password hashing, recovery, MFA options and server-side session security.</div>
+ </div>
+</div>
+
+<div class="onboard" id="onboard">
+ <div class="oncard">
+  <div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div>
+  <div class="tiny" style="margin-top:14px;text-transform:uppercase;letter-spacing:.16em;color:#baa2ff;font-weight:900">Privacy-first prototype setup</div>
+  <h1>Before you start</h1>
+  <p>MosAIc turns selected interest signals into real-world groups, events and career opportunities. You stay in control of matching, location sharing and connected sources.</p>
+  <label class="check"><input id="agree1" type="checkbox" onchange="checkConsent()"><span>I accept the <button class="link" onclick="openLegal('terms')" type="button">Terms of Use</button>.</span></label>
+  <label class="check"><input id="agree2" type="checkbox" onchange="checkConsent()"><span>I accept the <button class="link" onclick="openLegal('privacy')" type="button">Privacy Notice</button>.</span></label>
+  <label class="check"><input id="agree3" type="checkbox" onchange="checkConsent()"><span>I understand location sharing, messages and job applications require explicit user action.</span></label>
+  <button id="continue" class="btn full" style="opacity:.45;margin-top:4px" disabled onclick="acceptConsent()">Accept & continue</button>
+ </div>
+</div>
+
+<div class="legal" id="legal">
+ <div class="legal-top"><button class="back" onclick="closeLegal()">‹</button><div><b id="legalTitle"></b><div class="tiny">MosAIc prototype</div></div></div>
+ <div class="legal-scroll" id="legalBody"></div>
+ <div class="legal-bottom"><div><button class="btn ghost" onclick="closeLegal()">Back</button><button class="btn" onclick="acceptLegal()">I understand</button></div></div>
+</div>
+
+<div class="shell">
+ <header class="topbar">
+  <div class="row">
+   <div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div>
+   <button class="iconbtn" onclick="show('settings')" aria-label="Settings">⚙</button>
+  </div>
+ </header>
+
+ <main class="content">
+  <section id="groups" class="screen active">
+   <div class="heading">Your groups</div>
+   <div class="sub">Matched from interests you choose to share. Suggestions prioritise common interests, availability and your group preferences.</div>
+   <div class="source-row"><span class="source-chip"><strong>✓</strong> Instagram</span><span class="source-chip"><strong>✓</strong> TikTok</span><span class="source-chip"><strong>✓</strong> LinkedIn</span></div>
+
+   <div class="card">
+    <div class="row gap">
+     <div class="people-stack"><div class="avatar">M</div><div class="avatar goldbg">P</div><div class="avatar mintbg">S</div><div class="avatar lavbg">Y</div></div>
+     <div><div class="group-title">Saturday night crew</div><div class="meta">4 people, including you · matched on 3 shared interests</div></div>
+    </div>
+    <div class="small" style="margin-top:13px;font-weight:850">What you have in common</div>
+    <div class="tags"><span class="tag coraltag">Indie film</span><span class="tag goldtag">Street food</span><span class="tag minttag">Pilates</span></div>
+    <button class="btn full" style="margin-top:13px" onclick="show('chat')">Open group chat</button>
+   </div>
+
+   <div class="event-banner" onclick="openEvent('night')">
+    <div class="row gap"><div class="locbox">⌖</div><div><b>Night market, Saturday 6 pm</b><div class="small" style="color:#52370a">All 4 of you are going</div></div></div><b>›</b>
+   </div>
+
+   <div class="small" style="font-weight:850;margin:15px 0 8px">Earlier groups</div>
+   <div class="earlier">
+    <div class="earlier-row"><div class="row gap"><div class="people-stack"><div class="avatar lavbg">J</div><div class="avatar goldbg">K</div></div><span>Sunday run club</span></div><button class="btn ghost sm" onclick="toast('Earlier group opened (demo)')">Chat</button></div>
+    <div class="earlier-row"><div class="row gap"><div class="people-stack"><div class="avatar mintbg">A</div><div class="avatar">T</div></div><span>Gallery opening crew</span></div><button class="btn ghost sm" onclick="toast('Earlier group opened (demo)')">Chat</button></div>
+   </div>
+  </section>
+
+  <section id="events" class="screen">
+   <div class="heading">Events near you</div>
+   <div class="tabs"><button class="active" onclick="setEventTab(this,'week')">This week</button><button onclick="setEventTab(this,'group')">With my group</button><button onclick="setEventTab(this,'interest')">My interests</button></div>
+   <div class="map"><div class="block a"></div><div class="block b"></div><div class="block c"></div><div class="block d"></div><div class="road a"></div><div class="road b"></div><div class="road c"></div><div class="pin mint" style="left:47%;top:33%">♙</div><div class="pin gold" style="left:26%;top:61%">⌖</div><div class="pin lav" style="right:18%;top:48%">⌖</div></div>
+   <div id="eventList"></div>
+  </section>
+
+  <section id="eventDetail" class="screen">
+   <div class="chat-top"><button class="back" onclick="show('events')">‹</button><div><b>Event details</b><div class="small">Everything you need before you go</div></div></div>
+   <div id="eventDetailBody"></div>
+  </section>
+
+  <section id="careers" class="screen">
+   <div class="heading">Roles for you</div>
+   <div class="sub">Suggested from your selected interests and career profile. “Apply for me” opens a review step — nothing is sent automatically.</div>
+   <div id="jobList" style="margin-top:14px"></div>
+  </section>
+
+  <section id="profile" class="screen">
+   <div class="profile-head"><div class="big-avatar" id="profileInitial">A</div><div><div class="profile-name" id="profileName">Alex</div><div class="sub" id="profileEmail">alex.demo@mosaic.app</div></div></div>
+   <div class="card">
+    <div class="section-title">Your interests</div>
+    <div class="tiny">■ Instagram &nbsp; ■ TikTok &nbsp; ■ LinkedIn</div>
+    <div class="tags"><span class="tag minttag">Indie film</span><span class="tag coraltag">Street food</span><span class="tag coraltag">Pilates</span><span class="tag lavtag">Product design</span><span class="tag minttag">Live music</span><span class="tag lavtag">Marketing</span></div>
+    <button class="btn ghost sm" style="margin-top:12px" onclick="showInterestSources()">Why am I seeing these?</button>
+   </div>
+   <div class="card">
+    <div class="section-title">People you've met</div>
+    <div class="person-row"><div class="person"><div class="avatar">M</div><span>Maya</span></div><div class="person"><div class="avatar goldbg">P</div><span>Priya</span></div><div class="person"><div class="avatar lavbg">S</div><span>Sam</span></div><div class="person"><div class="avatar mintbg">J</div><span>Jordan</span></div></div>
+   </div>
+   <div class="card">
+    <div class="section-title">Events you're attending</div>
+    <div class="earlier"><button class="earlier-row setting-link" onclick="openEvent('night')"><span>Night market, Sat 6 pm</span><span class="badge mint">With your group</span></button><button class="earlier-row setting-link" onclick="openEvent('pottery')"><span>Pottery taster, Sun 11 am</span><span class="badge gold">2 of 4 going</span></button></div>
+   </div>
+   <div class="card">
+    <div class="section-title">Group preference</div>
+    <div class="pref-grid"><button class="pref active" onclick="pickPref(this)">Mixed</button><button class="pref" onclick="pickPref(this)">Women only</button><button class="pref" onclick="pickPref(this)">Men only</button></div>
+   </div>
+   <button class="btn secondary full" onclick="show('settings')">Open settings</button>
+  </section>
+
+  <section id="settings" class="screen">
+   <div class="chat-top"><button class="back" onclick="show('profile')">‹</button><div><b>Settings</b><div class="small">Account, privacy, notifications and safety</div></div></div>
+   <div class="card">
+    <div class="section-title">Account</div>
+    <div class="setting-row"><div><b id="settingsName">Alex</b><div class="small" id="settingsEmail">alex.demo@mosaic.app</div></div><button class="btn ghost sm" onclick="editProfile()">Edit</button></div>
+    <div class="setting-row"><div><b>Account security</b><div class="small">Prototype session stored on this device.</div></div><span class="badge gold">Demo</span></div>
+   </div>
+
+   <div class="card">
+    <div class="section-title">Notifications</div>
+    <div class="setting-row"><div><b>Group messages</b><div class="small">New messages and invitations.</div></div><button class="switch on" data-key="notif_group" onclick="toggleSetting(this)"></button></div>
+    <div class="setting-row"><div><b>Event reminders</b><div class="small">Upcoming RSVP'd events.</div></div><button class="switch on" data-key="notif_events" onclick="toggleSetting(this)"></button></div>
+    <div class="setting-row"><div><b>Career matches</b><div class="small">New role recommendations.</div></div><button class="switch" data-key="notif_career" onclick="toggleSetting(this)"></button></div>
+   </div>
+
+   <div class="card">
+    <div class="section-title">Connected sources</div>
+    <div class="setting-row"><div><b>Instagram</b><div class="small">Synthetic interests in this demo.</div></div><span class="badge mint">Connected</span></div>
+    <div class="setting-row"><div><b>TikTok</b><div class="small">Synthetic interests in this demo.</div></div><span class="badge mint">Connected</span></div>
+    <div class="setting-row"><div><b>LinkedIn</b><div class="small">Synthetic career profile.</div></div><span class="badge mint">Connected</span></div>
+    <button class="btn ghost full" style="margin-top:12px" onclick="toast('Connection manager opened (demo)')">Manage sources</button>
+   </div>
+
+   <div class="card">
+    <div class="section-title">Privacy</div>
+    <div class="setting-row"><div><b>Profile discoverability</b><div class="small">Allow group matching.</div></div><button class="switch on" data-key="privacy_discoverable" onclick="toggleSetting(this)"></button></div>
+    <div class="setting-row"><div><b>Show interest reasons</b><div class="small">Explain why a match was recommended.</div></div><button class="switch on" data-key="privacy_explain" onclick="toggleSetting(this)"></button></div>
+    <div class="setting-row"><div><b>Location sharing default</b><div class="small">Always starts OFF.</div></div><span class="badge mint">Off by default</span></div>
+    <button class="btn secondary full" style="margin-top:12px" onclick="show('privacyCenter')">Privacy centre</button>
+   </div>
+
+   <div class="card">
+    <div class="section-title">Safety & support</div>
+    <button class="setting-link setting-row" onclick="toast('Blocked users list opened (demo)')"><div><b>Blocked users</b><div class="small">Review people you have blocked.</div></div><span>›</span></button>
+    <button class="setting-link setting-row" onclick="toast('Help centre opened (demo)')"><div><b>Help centre</b><div class="small">Safety, privacy and account support.</div></div><span>›</span></button>
+    <button class="setting-link setting-row" onclick="showAbout()"><div><b>About MosAIc</b><div class="small">Version 3.0 · university prototype.</div></div><span>›</span></button>
+   </div>
+
+   <button class="btn danger full" onclick="logout()">Log out</button>
+  </section>
+
+  <section id="privacyCenter" class="screen">
+   <div class="chat-top"><button class="back" onclick="show('settings')">‹</button><div><b>Privacy centre</b><div class="small">See, export and delete prototype data</div></div></div>
+   <div class="card">
+    <div class="section-title">Your controls</div>
+    <div class="earlier">
+     <div class="earlier-row"><div><b>Interest signals</b><div class="small">6 broad demo interests.</div></div><span class="badge mint">Editable</span></div>
+     <div class="earlier-row"><div><b>Location history</b><div class="small">Not retained in this prototype.</div></div><span class="badge mint">None stored</span></div>
+     <div class="earlier-row"><div><b>Raw social history</b><div class="small">Not required by this showcase.</div></div><span class="badge mint">Not stored</span></div>
+    </div>
+   </div>
+   <div class="card">
+    <div class="section-title">Data actions</div>
+    <button class="btn secondary full" onclick="exportData()">Export my prototype data</button>
+    <button class="btn ghost full" style="margin-top:9px" onclick="openLegal('privacy')">Read privacy notice</button>
+    <button class="btn danger full" style="margin-top:9px" onclick="deleteAppData()">Delete local prototype data</button>
+   </div>
+  </section>
+
+  <section id="chat" class="screen">
+   <div class="chat-top"><button class="back" onclick="show('groups')">‹</button><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><div><b>Saturday night crew</b><div class="small">Maya, Priya, Sam and you</div></div></div>
+   <div class="chat-event"><div><b>Night market, Saturday 6 pm</b><div style="font-size:11px;margin-top:3px">Everyone is going. You can choose to share location for 1 hour at the event.</div></div><button class="btn dark sm" onclick="show('find')">Find each other</button></div>
+   <div id="messages">
+    <div class="message-wrap"><div class="sender maya">Maya</div><div class="bubble">Anyone else heading to the night market on Saturday?</div></div>
+    <div class="message-wrap"><div class="bubble mine">Yes! I'm planning to get there around 6.</div></div>
+    <div class="message-wrap"><div class="sender priya">Priya</div><div class="bubble">Same. It's going to be packed though, how will we find each other?</div></div>
+    <div class="message-wrap"><div class="sender sam">Sam</div><div class="bubble">That's what the location share is for. Tap the banner when you arrive.</div></div>
+   </div>
+   <div class="composer"><input id="messageInput" placeholder="Message the group"><button class="send" onclick="sendMessage()">➤</button></div>
+  </section>
+
+  <section id="find" class="screen">
+   <div class="chat-top"><button class="back" onclick="show('chat')">‹</button><div><b>Find each other</b><div class="small">Night market · Saturday 6 pm</div></div></div>
+   <div class="map" style="height:365px;margin-top:15px"><div class="block a"></div><div class="block b"></div><div class="block c"></div><div class="block d"></div><div class="road a"></div><div class="road b"></div><div class="road c"></div><div class="pin coral" style="left:20%;top:22%">M</div><div class="pin gold" style="right:17%;top:33%">P</div><div class="pin mint" style="left:44%;top:44%;outline:3px solid var(--mint);outline-offset:6px">You</div><div class="pin lav" style="right:26%;bottom:18%">S</div></div>
+   <div class="card">
+    <span class="badge mint">Available because all 4 RSVP'd</span>
+    <div class="row between" style="margin-top:13px"><div><b id="shareLabel">Location sharing is off</b><div class="small">Only this matched group can see your demo position.</div></div><span id="shareTimer" class="small"></span></div>
+    <button id="shareBtn" class="btn ghost full" style="margin-top:12px" onclick="toggleShare()">Start sharing for 1 hour</button>
+    <div class="tiny" style="margin-top:9px">RSVP does not share your location. You must explicitly start sharing, and the timer stops it automatically.</div>
+   </div>
+  </section>
+ </main>
+
+ <nav id="nav" class="nav">
+  <button class="active" data-screen="groups" onclick="show('groups')"><span class="ico">♙</span>Groups</button>
+  <button data-screen="events" onclick="show('events')"><span class="ico">⌖</span>Events</button>
+  <button data-screen="careers" onclick="show('careers')"><span class="ico">▣</span>Careers</button>
+  <button data-screen="profile" onclick="show('profile')"><span class="ico">♧</span>Profile</button>
+ </nav>
+</div>
+
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div class="sheet"><div class="handle"></div><div id="modalBody"></div></div></div>
+<div id="toast" class="toast"></div>
+
+<script>
+const events=[
+ {id:'night',name:'Night market',date:'Saturday, 6 pm',end:'9:30 pm',venue:'Pyrmont Community Market',area:'Pyrmont, Sydney',group:'All 4 going',kind:'group',badge:'All 4 going',tone:'mint',host:'Sydney Night Collective',desc:'An evening market with food stalls, small local makers, live acoustic music and community pop-ups.',interests:['Street food','Live music','Community'],price:'Free entry',access:'Step-free main entrance · accessible toilets nearby',safety:'Busy public event. Keep location sharing optional and time-limited.',agenda:['6:00 pm — meet near the main entrance','6:30 pm — food stalls','7:30 pm — live music area','9:30 pm — event finishes']},
+ {id:'pottery',name:'Pottery taster',date:'Sunday, 11 am',end:'12:30 pm',venue:'Clay Room Studio',area:'Newtown, Sydney',group:'2 of 4 going',kind:'group',badge:'2 of 4 going',tone:'gold',host:'Clay Room Studio',desc:'A beginner-friendly hand-building pottery class. Materials and firing are included in the demonstration listing.',interests:['Creative','Social','Beginner friendly'],price:'$25 demo price',access:'Indoor venue · seating available',safety:'Hosted workshop with staff onsite.',agenda:['10:45 am — check in','11:00 am — introduction','11:15 am — guided hand-building','12:15 pm — wrap-up']},
+ {id:'film',name:'Short-film night',date:'Friday, 7 pm',end:'9:15 pm',venue:'Laneway Screen Room',area:'Surry Hills, Sydney',group:'Matches your interests',kind:'interest',badge:'Matches your interests',tone:'lav',host:'Indie Frames Sydney',desc:'A curated short-film screening followed by a relaxed audience discussion.',interests:['Indie film','Design','Live events'],price:'$12 demo ticket',access:'Lift access · captioned films where available',safety:'Public ticketed event with venue staff.',agenda:['6:40 pm — doors open','7:00 pm — screening block 1','8:00 pm — break','8:15 pm — screening block 2','9:00 pm — discussion']},
+ {id:'design',name:'Design social mixer',date:'Thursday, 6:30 pm',end:'8:30 pm',venue:'UTS Design Hub',area:'Ultimo, Sydney',group:'Product design + marketing',kind:'interest',badge:'Matches your profile',tone:'coral',host:'Student Design Network',desc:'A casual mixer for students interested in product design, marketing and multidisciplinary projects.',interests:['Product design','Marketing','Networking'],price:'Free with RSVP',access:'Accessible university venue',safety:'Hosted campus event.',agenda:['6:30 pm — arrival','6:45 pm — introductions','7:00 pm — small-group activity','8:00 pm — open networking']}
+];
+const jobs=[
+ {id:'social',title:'Social Media Coordinator',company:'Harbour Creative',location:'Sydney',badge:'social media, events',tone:'coral',why:['Marketing','Events','Social media'],draft:'Draft application highlights your interest profile, event coordination and community participation.'},
+ {id:'events',title:'Events and Community Coordinator',company:'Neighbourhood Collective',location:'Parramatta',badge:'events, live music',tone:'mint',why:['Live music','Events','Community'],draft:'Draft application highlights group coordination, event interest and community engagement.'},
+ {id:'marketing',title:'Marketing and Communications Assistant',company:'Northside Studio',location:'Sydney',badge:'marketing',tone:'lav',why:['Marketing','Product design'],draft:'Draft application highlights marketing interest and multidisciplinary collaboration.'}
+];
+let authMode='signin', currentLegal='terms', eventMode='week', sharing=false, seconds=3600, timer=null, previousMain='groups';
+
+function safeJson(key,fallback){try{return JSON.parse(localStorage.getItem(key)) ?? fallback}catch(e){return fallback}}
+function setAuthMode(mode){authMode=mode;document.getElementById('signinTab').classList.toggle('active',mode==='signin');document.getElementById('signupTab').classList.toggle('active',mode==='signup');document.getElementById('nameField').classList.toggle('hidden',mode!=='signup');document.getElementById('authHeading').textContent=mode==='signin'?'Welcome back':'Create your MosAIc account';document.getElementById('authBtn').textContent=mode==='signin'?'Sign in':'Create account'}
+function submitAuth(){
+ const email=document.getElementById('email').value.trim(),pass=document.getElementById('password').value;
+ if(!email.includes('@')||pass.length<4){toast('Enter a valid email and at least 4 characters for this demo password');return}
+ if(authMode==='signup'){
+   const name=document.getElementById('displayName').value.trim()||email.split('@')[0];
+   localStorage.setItem('mosaic_demo_account',JSON.stringify({email,name,password:pass}));
+   startSession({email,name});return;
+ }
+ const account=safeJson('mosaic_demo_account',null);
+ if(account && (account.email!==email || account.password!==pass)){toast('Demo account details do not match. Use Demo Account or create a new one.');return}
+ startSession({email,name:account?.name||email.split('@')[0]});
+}
+function useDemoAccount(){startSession({email:'alex.demo@mosaic.app',name:'Alex'})}
+function startSession(user){localStorage.setItem('mosaic_session',JSON.stringify(user));document.getElementById('auth').classList.add('hidden');applyUser();if(!localStorage.getItem('mosaic_consent'))document.getElementById('onboard').classList.add('show')}
+function logout(){localStorage.removeItem('mosaic_session');document.getElementById('auth').classList.remove('hidden');show('groups');toast('Logged out')}
+function applyUser(){const u=safeJson('mosaic_session',{name:'Alex',email:'alex.demo@mosaic.app'});['profileName','settingsName'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.name});['profileEmail','settingsEmail'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.email});const pi=document.getElementById('profileInitial');if(pi)pi.textContent=(u.name||'A').trim()[0].toUpperCase()}
+
+function checkConsent(){const ok=['agree1','agree2','agree3'].every(x=>document.getElementById(x).checked);const b=document.getElementById('continue');b.disabled=!ok;b.style.opacity=ok?'1':'.45'}
+function acceptConsent(){localStorage.setItem('mosaic_consent',JSON.stringify({acceptedAt:new Date().toISOString(),version:'3.0'}));document.getElementById('onboard').classList.remove('show')}
+function show(id){
+ if(['groups','events','careers','profile'].includes(id))previousMain=id;
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');
+ const special=['chat','find','eventDetail','settings','privacyCenter'].includes(id);document.getElementById('nav').style.display=special?'none':'grid';
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo({top:0,behavior:'smooth'})
+}
+function setEventTab(btn,mode){eventMode=mode;document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderEvents()}
+function renderEvents(){
+ let list=events;if(eventMode==='group')list=list.filter(x=>x.kind==='group');if(eventMode==='interest')list=list.filter(x=>x.kind==='interest');
+ document.getElementById('eventList').innerHTML=list.map(e=>`<div class="list-card" onclick="openEvent('${e.id}')"><div class="row between"><div><h3>${e.name}</h3><p>${e.date}</p></div><span class="badge ${e.tone}">${e.badge}</span></div><div class="row between" style="margin-top:10px"><span class="small">${e.group}</span><button class="btn ghost sm" onclick="event.stopPropagation();openEvent('${e.id}')">Open event</button></div></div>`).join('')
+}
+function openEvent(id){
+ const e=events.find(x=>x.id===id);if(!e)return;
+ document.getElementById('eventDetailBody').innerHTML=`<div class="detail-hero" style="margin-top:15px"><span class="badge ${e.tone}">${e.badge}</span><h1>${e.name}</h1><div class="sub">${e.date} – ${e.end} · ${e.area}</div><div class="tags">${e.interests.map(x=>`<span class="tag">${x}</span>`).join('')}</div></div>
+ <div class="card"><div class="section-title">About this event</div><p class="sub" style="color:#d7d3e9">${e.desc}</p><div class="kv"><b>Venue</b><span>${e.venue}</span></div><div class="kv"><b>Price</b><span>${e.price}</span></div><div class="kv"><b>Access</b><span>${e.access}</span></div></div>
+ <div class="card"><div class="section-title">Host</div><div class="host"><div class="hostlogo">${e.host[0]}</div><div><b>${e.host}</b><div class="small">Fictional verified host for prototype demonstration</div></div></div></div>
+ <div class="card"><div class="section-title">Schedule</div>${e.agenda.map(x=>`<div class="kv"><b>•</b><span>${x}</span></div>`).join('')}</div>
+ <div class="card"><div class="section-title">Your group</div><div class="row between"><div class="people-stack"><div class="avatar">M</div><div class="avatar goldbg">P</div><div class="avatar lavbg">S</div><div class="avatar mintbg">Y</div></div><span class="badge mint">${e.id==='night'?'4 going':e.group}</span></div>${e.id==='night'?`<button class="btn full" style="margin-top:12px" onclick="show('chat')">Open group chat</button><button class="btn secondary full" style="margin-top:8px" onclick="show('find')">Find each other at event</button>`:''}</div>
+ <div class="callout warn"><b>Safety:</b> ${e.safety}</div>
+ <div class="row gap" style="margin-top:13px"><button class="btn secondary grow" onclick="downloadCalendar('${e.id}')">Add to calendar</button><button class="btn grow" onclick="toast('RSVP saved for ${e.name}')">${e.id==='night'?'Going ✓':'RSVP'}</button></div>`;
+ show('eventDetail')
+}
+function downloadCalendar(id){
+ const e=events.find(x=>x.id===id);
+ const ics=`BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//MosAIc Prototype//EN\nBEGIN:VEVENT\nSUMMARY:${e.name}\nDESCRIPTION:${e.desc.replace(/\n/g,' ')}\nLOCATION:${e.venue}, ${e.area}\nEND:VEVENT\nEND:VCALENDAR`;
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download=`${e.id}-mosaic-event.ics`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800)
+}
+function renderJobs(){document.getElementById('jobList').innerHTML=jobs.map(j=>`<div class="card job-card"><h3>${j.title}</h3><div class="job-meta">${j.company} · ${j.location}</div><span class="badge ${j.tone}">Matches your interests: ${j.badge}</span><div class="job-actions"><button class="btn secondary" onclick="toast('Role saved')">Save</button><button class="btn" onclick="openJob('${j.id}')">Apply for me</button></div></div>`).join('')}
+function openJob(id){
+ const j=jobs.find(x=>x.id===id);document.getElementById('modalBody').innerHTML=`<div class="tiny" style="color:#bca8ff;text-transform:uppercase;letter-spacing:.14em;font-weight:900">Review before anything is sent</div><div class="heading" style="font-size:25px">${j.title}</div><div class="sub">${j.company} · ${j.location}</div><div class="card no-shadow"><div class="section-title">Why this role</div><div class="tags">${j.why.map(x=>`<span class="tag">${x}</span>`).join('')}</div><div class="callout good" style="margin-top:11px">${j.draft}</div></div><div class="callout warn"><b>Important:</b> “Apply for me” means MosAIc prepares a draft. You review your CV, answers and destination before submission.</div><button class="btn full" style="margin-top:12px" onclick="toast('Application draft created (demo)');closeModal()">Create draft</button>`;openModal()
+}
+function showInterestSources(){document.getElementById('modalBody').innerHTML=`<div class="heading" style="font-size:25px">Why am I seeing these?</div><div class="sub">MosAIc should make source and control visible.</div><div class="earlier" style="margin-top:14px"><div class="earlier-row"><div><b>Indie film</b><div class="small">Synthetic Instagram signal</div></div><button class="btn ghost sm" onclick="toast('Removed from demo')">Remove</button></div><div class="earlier-row"><div><b>Street food</b><div class="small">Synthetic TikTok signal</div></div><button class="btn ghost sm" onclick="toast('Removed from demo')">Remove</button></div><div class="earlier-row"><div><b>Product design</b><div class="small">Synthetic LinkedIn signal</div></div><button class="btn ghost sm" onclick="toast('Removed from demo')">Remove</button></div></div>`;openModal()}
+function pickPref(btn){document.querySelectorAll('.pref').forEach(x=>x.classList.remove('active'));btn.classList.add('active');toast('Preference updated')}
+function sendMessage(){const i=document.getElementById('messageInput');if(!i.value.trim())return;const w=document.createElement('div');w.className='message-wrap';const b=document.createElement('div');b.className='bubble mine';b.textContent=i.value.trim();w.appendChild(b);document.getElementById('messages').appendChild(w);i.value='';toast('Message added locally')}
+function toggleShare(){sharing=!sharing;const b=document.getElementById('shareBtn'),l=document.getElementById('shareLabel');if(sharing){seconds=3600;l.textContent='Sharing with your group';b.textContent='Stop sharing';b.className='btn danger full';clearInterval(timer);timer=setInterval(()=>{seconds--;drawTimer();if(seconds<=0){sharing=false;clearInterval(timer);setShareOff()}},1000);drawTimer();toast('Demo sharing started')}else{clearInterval(timer);setShareOff();toast('Location sharing stopped')}}
+function setShareOff(){document.getElementById('shareLabel').textContent='Location sharing is off';const b=document.getElementById('shareBtn');b.textContent='Start sharing for 1 hour';b.className='btn ghost full';document.getElementById('shareTimer').textContent=''}
+function drawTimer(){let m=Math.floor(seconds/60),s=seconds%60;document.getElementById('shareTimer').textContent=`${m}:${String(s).padStart(2,'0')} left`}
+
+function toggleSetting(btn){btn.classList.toggle('on');localStorage.setItem('mosaic_setting_'+btn.dataset.key,btn.classList.contains('on')?'1':'0')}
+function restoreSettings(){document.querySelectorAll('.switch').forEach(btn=>{const v=localStorage.getItem('mosaic_setting_'+btn.dataset.key);if(v!==null)btn.classList.toggle('on',v==='1')})}
+function editProfile(){const u=safeJson('mosaic_session',{name:'Alex',email:'alex.demo@mosaic.app'});document.getElementById('modalBody').innerHTML=`<div class="heading" style="font-size:25px">Edit profile</div><div class="field"><div class="label">Display name</div><input id="editName" class="input" value="${escapeHtml(u.name)}"></div><div class="field"><div class="label">Email</div><input id="editEmail" class="input" value="${escapeHtml(u.email)}"></div><button class="btn full" onclick="saveProfile()">Save profile</button>`;openModal()}
+function saveProfile(){const name=document.getElementById('editName').value.trim(),email=document.getElementById('editEmail').value.trim();if(!name||!email.includes('@')){toast('Enter a name and valid email');return}localStorage.setItem('mosaic_session',JSON.stringify({name,email}));applyUser();closeModal();toast('Profile updated')}
+function exportData(){const payload={app:'MosAIc prototype',version:'3.0',exportedAt:new Date().toISOString(),session:safeJson('mosaic_session',null),consent:safeJson('mosaic_consent',null),settings:Object.fromEntries(Object.keys(localStorage).filter(k=>k.startsWith('mosaic_setting_')).map(k=>[k,localStorage.getItem(k)])),note:'Synthetic prototype data only'};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));a.download='mosaic-prototype-data.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800)}
+function deleteAppData(){if(confirm('Delete all MosAIc prototype data stored in this browser?')){localStorage.clear();location.reload()}}
+function showAbout(){document.getElementById('modalBody').innerHTML=`<div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div><div class="heading" style="font-size:25px;margin-top:18px">From interests to real connections.</div><p class="sub">Version 3.0 university prototype. MosAIc explores how user-approved interest signals could support groups, real-world events and career opportunities instead of another endless content feed.</p><div class="callout good">All people, jobs, event venues and connected-source data in this build are fictional demonstration content.</div>`;openModal()}
+
+function openModal(){document.getElementById('modal').classList.add('open')}function closeModal(){document.getElementById('modal').classList.remove('open')}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),2100)}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+
+function openLegal(kind){
+ currentLegal=kind;document.getElementById('legal').classList.add('open');document.body.style.overflow='hidden';
+ document.getElementById('legalTitle').textContent=kind==='terms'?'Terms of Use':'Privacy Notice';
+ document.getElementById('legalBody').innerHTML=kind==='terms'?`
+ <div class="legal-section"><h3>1. Prototype status</h3><p>MosAIc is a university prototype for demonstrating group, event and career recommendations. It is not a production social network, recruitment agency, identity-verification service or emergency service.</p></div>
+ <div class="legal-section"><h3>2. Recommendation limits</h3><p>A recommendation does not prove identity, trustworthiness, friendship compatibility, employability or safety. Users should verify people, events and organisations independently.</p></div>
+ <div class="legal-section"><h3>3. Acceptable use</h3><p>Do not use MosAIc to harass, stalk, impersonate, discriminate, scrape profiles, upload malware or share another person's private information without permission.</p></div>
+ <div class="legal-section"><h3>4. In-person safety</h3><p>A production version would require reporting, blocking, moderation, abuse detection, age/safeguarding rules and clear escalation processes.</p></div>
+ <div class="legal-section"><h3>5. Careers</h3><p>Job suggestions are recommendations only. “Apply for me” opens a review step; users approve any final application before submission.</p></div>
+ <div class="legal-section"><h3>6. Third-party services</h3><p>Social-platform references in this build are synthetic. Real integrations would require official OAuth/API permission and compliance with provider terms.</p></div>`
+ :`
+ <div class="legal-section"><h3>1. What this demo stores</h3><p>The prototype stores a local demo session, consent record, preference toggles and fictional interest information in this browser. It does not require a production account server.</p></div>
+ <div class="legal-section"><h3>2. Data minimisation</h3><p>A production MosAIc should collect only information needed for a clear purpose. Broad interest categories should be preferred over complete raw histories where possible.</p></div>
+ <div class="legal-section"><h3>3. Location</h3><p>RSVP does not activate location sharing. Users explicitly start sharing, choose who can see it and can stop at any time. Sharing should end automatically.</p></div>
+ <div class="legal-section"><h3>4. Interest transparency</h3><p>Users should see which source produced an interest signal and be able to correct or remove it.</p></div>
+ <div class="legal-section"><h3>5. Production security</h3><p>A public release would require secure authentication, password hashing, server-side authorisation, encrypted transport, secrets management, audit logging, abuse controls, vulnerability management, incident response and formal privacy review.</p></div>
+ <div class="legal-section"><h3>6. User controls</h3><p>Users should be able to manage connected sources, edit inferred interests, stop location sharing, block/report people, export data and delete their account.</p></div>`;
+ document.getElementById('legalBody').scrollTop=0
+}
+function closeLegal(){document.getElementById('legal').classList.remove('open');document.body.style.overflow=''}
+function acceptLegal(){document.getElementById(currentLegal==='terms'?'agree1':'agree2').checked=true;closeLegal();checkConsent()}
+
+function boot(){
+ renderEvents();renderJobs();restoreSettings();
+ const s=safeJson('mosaic_session',null);
+ if(s){document.getElementById('auth').classList.add('hidden');applyUser();if(!localStorage.getItem('mosaic_consent'))document.getElementById('onboard').classList.add('show')}
+}
+boot();
+
+</script>
+</body>
+</html>
