@@ -119,13 +119,13 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
  <main class="content">
   <section id="groups" class="screen active">
    <div class="heading">Your groups</div>
-   <div class="sub">Matched from interests you choose to share. Suggestions prioritise common interests, availability and your group preferences.</div>
+   <div class="sub">The MosAIc matching algorithm uses interests you choose to share, availability, approximate area and group preferences to suggest people you may want to connect with.</div>
    <div class="source-row"><span class="source-chip"><strong>✓</strong> Instagram</span><span class="source-chip"><strong>✓</strong> TikTok</span><span class="source-chip"><strong>✓</strong> LinkedIn</span></div>
 
    <div class="card">
     <div class="row gap">
      <div class="people-stack"><div class="avatar">M</div><div class="avatar goldbg">P</div><div class="avatar mintbg">S</div><div class="avatar lavbg">Y</div></div>
-     <div><div class="group-title">Saturday night crew</div><div class="meta">4 people, including you · matched on 3 shared interests</div></div>
+     <div><div class="group-title">Saturday night crew</div><div class="meta">4 people, including you · algorithm matched on 3 shared interests</div></div>
     </div>
     <div class="small" style="margin-top:13px;font-weight:850">What you have in common</div>
     <div class="tags"><span class="tag coraltag">Indie film</span><span class="tag goldtag">Street food</span><span class="tag minttag">Pilates</span></div>
@@ -145,20 +145,21 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
 
   <section id="people" class="screen">
    <div class="heading">People near you</div>
-   <div class="sub">Connect with people who share your interests and are in the same general area. MosAIc uses approximate area for discovery — never your live location.</div>
+   <div class="sub">The MosAIc matching algorithm suggests people with shared interests who are in the same general area. It uses approximate area for discovery — never your live location.</div>
    <div class="people-toolbar" style="margin-top:13px">
     <button class="filter-pill active" data-people-filter="best" onclick="setPeopleFilter(this,'best')">Best match</button>
     <button class="filter-pill" data-people-filter="closest" onclick="setPeopleFilter(this,'closest')">Closest</button>
     <button class="filter-pill" data-people-filter="shared" onclick="setPeopleFilter(this,'shared')">Most shared</button>
     <button class="filter-pill" data-people-filter="fresh" onclick="setPeopleFilter(this,'fresh')">New perspectives</button>
    </div>
-   <div class="callout good" style="margin-top:8px"><b>Area privacy:</b> this prototype shows approximate suburb/distance only. Exact location is never shown on discovery cards.</div>
+   <div class="callout good" style="margin-top:8px"><b>Algorithm + privacy:</b> the prototype combines shared interests, approximate distance, preferences and complementary interests. Exact location is never shown on discovery cards.</div>
+   <button type="button" class="btn ghost full" style="margin:10px 0 2px" onclick="show('algorithmCenter')">How the matching algorithm works</button>
    <div id="peopleList"></div>
   </section>
 
   <section id="events" class="screen">
    <div class="heading">Explore</div>
-   <div class="sub">Discover events and places that match your interests, your groups and the area you choose to explore.</div>
+   <div class="sub">The recommendation algorithm suggests events and places from your interests, groups and the area you choose to explore.</div>
    <div class="explore-switch"><button id="exploreEventsBtn" class="active" onclick="setExploreType('events')">Events</button><button id="explorePlacesBtn" onclick="setExploreType('places')">Places</button></div>
    <div id="eventsPanel">
     <div class="tabs"><button class="active" onclick="setEventTab(this,'week')">This week</button><button onclick="setEventTab(this,'group')">With my group</button><button onclick="setEventTab(this,'interest')">My interests</button></div>
@@ -221,14 +222,15 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
    </div>
 
    <div class="card">
-    <div class="section-title">Recommendation controls</div>
-    <div class="small">Choose how MosAIc balances familiar interests with new perspectives.</div>
+    <div class="section-title">Matching algorithm controls</div>
+    <div class="small">Choose how the MosAIc algorithm balances familiar interests with new perspectives.</div>
     <div class="mode-row" style="margin-top:12px">
      <button class="mode-btn" data-mode="similar" onclick="setDiscoveryMode(this,'similar')">More familiar</button>
      <button class="mode-btn active" data-mode="balanced" onclick="setDiscoveryMode(this,'balanced')">Balanced</button>
      <button class="mode-btn" data-mode="explore" onclick="setDiscoveryMode(this,'explore')">Explore</button>
     </div>
     <div class="callout good" id="modeExplain" style="margin-top:11px">Balanced mode mixes shared interests with complementary skills and some new perspectives.</div>
+    <button type="button" class="btn ghost full" style="margin-top:10px" onclick="show('algorithmCenter')">Algorithm transparency</button>
    </div>
 
    <div class="card">
@@ -248,16 +250,44 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
    </div>
 
    <div class="card">
-    <div class="section-title">Safety & support</div>
+    <div class="section-title">Safety, transparency & support</div>
+    <button class="setting-link setting-row" onclick="show('algorithmCenter')"><div><b>Matching algorithm</b><div class="small">See the signals, weights and limits behind recommendations.</div></div><span>›</span></button>
     <button class="setting-link setting-row" onclick="show('blockedUsers')"><div><b>Blocked users</b><div class="small">Review, unblock and manage safety actions.</div></div><span>›</span></button>
     <button class="setting-link setting-row" onclick="show('helpCenter')"><div><b>Help centre</b><div class="small">FAQs, support tickets and safety reporting.</div></div><span>›</span></button>
     <button class="setting-link setting-row" onclick="show('safetyCenter')"><div><b>Safety centre</b><div class="small">Review your safety setup and controls.</div></div><span>›</span></button>
-    <button class="setting-link setting-row" onclick="showAbout()"><div><b>About MosAIc</b><div class="small">Version 5.1 · advanced university prototype.</div></div><span>›</span></button>
+    <button class="setting-link setting-row" onclick="showAbout()"><div><b>About MosAIc</b><div class="small">Version 5.2 · advanced university prototype.</div></div><span>›</span></button>
    </div>
 
    <button class="btn danger full" onclick="logout()">Log out</button>
   </section>
 
+
+  <section id="algorithmCenter" class="screen">
+   <div class="chat-top"><button class="back" onclick="mosaicBack()">‹</button><div><b>Matching algorithm</b><div class="small">How MosAIc produces recommendations in this prototype</div></div></div>
+   <div class="card">
+    <div class="row between"><div><div class="section-title" style="margin-bottom:4px">Transparent by design</div><div class="small">The algorithm suggests connections — it does not decide who you should be friends with.</div></div><span class="badge mint">Explainable</span></div>
+    <div class="callout good" style="margin-top:12px"><b>Prototype formula:</b> shared interests 50% + approximate area 20% + complementary perspectives 15% + preferences/safety 15%.</div>
+   </div>
+   <div class="card">
+    <div class="section-title">Signals the algorithm can use</div>
+    <div class="setting-row"><div><b>Shared interests</b><div class="small">Broad interest labels you approved from connected sources.</div></div><span class="badge mint">50%</span></div>
+    <div class="setting-row"><div><b>Approximate area</b><div class="small">General suburb/distance for discovery, not live GPS.</div></div><span class="badge lav">20%</span></div>
+    <div class="setting-row"><div><b>Complementary interests</b><div class="small">Some different interests to avoid only creating identical groups.</div></div><span class="badge gold">15%</span></div>
+    <div class="setting-row"><div><b>Preferences & safety</b><div class="small">Group preferences, blocks and discoverability controls.</div></div><span class="badge coral">15%</span></div>
+   </div>
+   <div class="card">
+    <div class="section-title">What the algorithm does not use</div>
+    <div class="tags"><span class="tag">Passwords</span><span class="tag">Private DMs</span><span class="tag">2FA codes</span><span class="tag">Exact live location</span></div>
+    <p class="sub" style="margin-top:12px;color:#d5d0e8">For the university prototype, all social-media signals are synthetic. A production version would require official APIs, explicit consent and data minimisation.</p>
+   </div>
+   <div class="card">
+    <div class="section-title">Example: why Maya is recommended</div>
+    <div class="kv"><b>Shared interests</b><span>Indie film, Street food, Pilates</span></div>
+    <div class="kv"><b>Approximate area</b><span>Parramatta · about 1.8 km</span></div>
+    <div class="kv"><b>Complementary signal</b><span>UX design, Photography</span></div>
+    <div class="kv"><b>Algorithm result</b><span>94% prototype match</span></div>
+   </div>
+  </section>
 
   <section id="sourceManager" class="screen">
    <div class="chat-top"><button class="back" onclick="mosaicBack()">‹</button><div><b>Connected sources</b><div class="small">Choose what MosAIc can use for recommendations</div></div></div>
@@ -351,10 +381,10 @@ body{overscroll-behavior-y:none}button,input,textarea,select{font:inherit}button
    <div class="chat-top"><button class="back" onclick="mosaicBack()">‹</button><div><b>Find each other</b><div class="small">Night market · Saturday 6 pm</div></div></div>
    <div class="map" style="height:365px;margin-top:15px"><div class="block a"></div><div class="block b"></div><div class="block c"></div><div class="block d"></div><div class="road a"></div><div class="road b"></div><div class="road c"></div><div class="pin coral" style="left:20%;top:22%">M</div><div class="pin gold" style="right:17%;top:33%">P</div><div class="pin mint" style="left:44%;top:44%;outline:3px solid var(--mint);outline-offset:6px">You</div><div class="pin lav" style="right:26%;bottom:18%">S</div></div>
    <div class="card">
-    <span class="badge mint">Available because all 4 RSVP'd</span>
-    <div class="row between" style="margin-top:13px"><div><b id="shareLabel">Location sharing is off</b><div class="small">Only this matched group can see your demo position.</div></div><span id="shareTimer" class="small"></span></div>
+    <span class="badge mint">All 4 RSVP'd · optional 1-hour location share</span>
+    <div class="row between" style="margin-top:13px"><div><b id="shareLabel">Location sharing is off</b><div class="small">Only this matched group can see the temporary demo position after you opt in.</div></div><span id="shareTimer" class="small"></span></div>
     <button id="shareBtn" class="btn ghost full" style="margin-top:12px" onclick="toggleShare()">Start sharing for 1 hour</button>
-    <div class="tiny" style="margin-top:9px">RSVP does not share your location. You must explicitly start sharing, and the timer stops it automatically.</div>
+    <div class="tiny" style="margin-top:9px">RSVP does not share location. You explicitly opt in for up to 1 hour to help your group find each other, and the timer stops sharing automatically.</div>
    </div>
   </section>
  </main>
@@ -404,7 +434,7 @@ const groupChats={
  saturday:{
   name:'Saturday night crew',
   members:'Maya, Priya, Sam and you',
-  note:'Matched this week from 3 shared interests',
+  note:'Matched this week by the MosAIc algorithm from 3 shared interests',
   event:{title:'Night market, Saturday 6 pm',text:'Everyone is going. You can choose to share location for 1 hour at the event.',action:'find'},
   messages:[
    {sender:'Maya',tone:'maya',text:'Anyone else heading to the night market on Saturday?'},
@@ -416,7 +446,7 @@ const groupChats={
  run:{
   name:'Sunday run club',
   members:'Jordan, Kai and you',
-  note:'Earlier group · matched from running, coffee and local parks',
+  note:'Earlier group · algorithm matched from running, coffee and local parks',
   event:{title:'Sunday run, 8:00 am',text:'Easy 5 km loop at Parramatta Park. Meet at the George Street Gate.',action:'runInfo'},
   messages:[
    {sender:'Jordan',tone:'sam',text:'Are we still good for the easy 5k this Sunday?'},
@@ -428,7 +458,7 @@ const groupChats={
  gallery:{
   name:'Gallery opening crew',
   members:'Ava, Theo and you',
-  note:'Earlier group · matched from art, product design and live events',
+  note:'Earlier group · algorithm matched from art, product design and live events',
   event:{title:'Gallery opening, Friday 7:00 pm',text:'Meet in the foyer 10 minutes before the opening talk.',action:'galleryInfo'},
   messages:[
    {sender:'Ava',tone:'maya',text:'The opening talk starts at 7:15. Want to meet near the entrance first?'},
@@ -450,7 +480,8 @@ const screenParents={
  sourceManager:'settings',
  blockedUsers:'settings',
  helpCenter:'settings',
- safetyCenter:'settings'
+ safetyCenter:'settings',
+ algorithmCenter:'settings'
 };
 
 function getActiveScreen(){
@@ -502,7 +533,7 @@ function logout(){localStorage.removeItem('mosaic_session');document.getElementB
 function applyUser(){const u=safeJson('mosaic_session',{name:'Alex',email:'alex.demo@mosaic.app'});['profileName','settingsName'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.name});['profileEmail','settingsEmail'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=u.email});const pi=document.getElementById('profileInitial');if(pi)pi.textContent=(u.name||'A').trim()[0].toUpperCase()}
 
 function checkConsent(){const ok=['agree1','agree2','agree3'].every(x=>document.getElementById(x).checked);const b=document.getElementById('continue');b.disabled=!ok;b.style.opacity=ok?'1':'.45'}
-function acceptConsent(){localStorage.setItem('mosaic_consent',JSON.stringify({acceptedAt:new Date().toISOString(),version:'5.1'}));document.getElementById('onboard').classList.remove('show')}
+function acceptConsent(){localStorage.setItem('mosaic_consent',JSON.stringify({acceptedAt:new Date().toISOString(),version:'5.2'}));document.getElementById('onboard').classList.remove('show')}
 function openSettings(){show('settings')}
 function show(id,fromBack){
  const target=document.getElementById(id);
@@ -511,7 +542,7 @@ function show(id,fromBack){
  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));target.classList.add('active');
  currentScreen=id;
  if(id==='people')renderPeople();if(id==='events'){renderEvents();renderPlaces()}if(id==='sourceManager')renderSourceManager();if(id==='blockedUsers')renderBlockedUsers();if(id==='helpCenter')restoreLastTicket();if(id==='safetyCenter')restoreSettings();
- const special=['chat','find','eventDetail','settings','privacyCenter','sourceManager','blockedUsers','helpCenter','safetyCenter'].includes(id);document.getElementById('nav').style.display=special?'none':'grid';
+ const special=['chat','find','eventDetail','settings','privacyCenter','sourceManager','blockedUsers','helpCenter','safetyCenter','algorithmCenter'].includes(id);document.getElementById('nav').style.display=special?'none':'grid';
  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));
  if(!fromBack && special && location.protocol.startsWith('http')) history.pushState({mosaic:true,screen:id},'',location.href);
  window.scrollTo({top:0,behavior:'smooth'})
@@ -527,11 +558,11 @@ function renderPeople(){
  const host=document.getElementById('peopleList');if(!host)return;
  host.innerHTML=list.map(function(p){
   const state=localStorage.getItem('mosaic_connect_'+p.id)||'Connect';
-  return '<div class="card match-card"><div class="match-score">'+p.score+'%</div><div class="person-profile"><div class="person-avatar">'+p.initial+'</div><div><div class="group-title">'+p.name+'</div><div class="match-location"><svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11z"/><circle cx="12" cy="10" r="2"/></svg>'+p.area+' · ~'+p.distance.toFixed(1)+' km</div></div></div><div class="tags">'+p.interests.map(function(x){return '<span class="tag minttag">'+x+'</span>'}).join('')+p.extra.slice(0,1).map(function(x){return '<span class="tag">'+x+'</span>'}).join('')+'</div><p class="sub" style="color:#d3cee6">'+p.bio+'</p><div class="row gap"><button class="btn secondary grow" onclick="openPerson(\''+p.id+'\')">Why matched</button><button class="btn grow" id="connect-'+p.id+'" onclick="connectPerson(\''+p.id+'\')">'+state+'</button></div><div class="connect-state" id="connect-state-'+p.id+'">'+(state==='Request sent'?'Connection request pending':'Approximate-area match · exact location hidden')+'</div></div>';
+  return '<div class="card match-card"><div class="match-score" title="Algorithm match score">ALG<br>'+p.score+'%</div><div class="person-profile"><div class="person-avatar">'+p.initial+'</div><div><div class="group-title">'+p.name+'</div><div class="match-location"><svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11z"/><circle cx="12" cy="10" r="2"/></svg>'+p.area+' · ~'+p.distance.toFixed(1)+' km</div></div></div><div class="tags">'+p.interests.map(function(x){return '<span class="tag minttag">'+x+'</span>'}).join('')+p.extra.slice(0,1).map(function(x){return '<span class="tag">'+x+'</span>'}).join('')+'</div><p class="sub" style="color:#d3cee6">'+p.bio+'</p><div class="row gap"><button class="btn secondary grow" onclick="openPerson(\''+p.id+'\')">Why matched</button><button class="btn grow" id="connect-'+p.id+'" onclick="connectPerson(\''+p.id+'\')">'+state+'</button></div><div class="connect-state" id="connect-state-'+p.id+'">'+(state==='Request sent'?'Connection request pending':'Approximate-area match · exact location hidden')+'</div></div>';
  }).join('')
 }
 function connectPerson(id){const p=nearbyPeople.find(function(x){return x.id===id});if(!p)return;const key='mosaic_connect_'+id;const cur=localStorage.getItem(key);if(cur==='Request sent'){toast('Connection request is already pending');return}localStorage.setItem(key,'Request sent');const b=document.getElementById('connect-'+id);if(b)b.textContent='Request sent';const st=document.getElementById('connect-state-'+id);if(st)st.textContent='Connection request pending';toast('Connection request sent to '+p.name)}
-function openPerson(id){const p=nearbyPeople.find(function(x){return x.id===id});if(!p)return;document.getElementById('modalBody').innerHTML='<div class="row gap"><div class="person-avatar">'+p.initial+'</div><div><div class="heading" style="font-size:25px;margin:0">'+p.name+'</div><div class="match-location"><svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11z"/><circle cx="12" cy="10" r="2"/></svg>'+p.area+' · approximate area</div></div></div><div class="card no-shadow"><div class="section-title">Why MosAIc matched you</div><div class="kv"><b>Match score</b><span>'+p.score+'% prototype score</span></div><div class="kv"><b>Shared</b><span>'+p.interests.join(', ')+'</span></div><div class="kv"><b>New perspective</b><span>'+p.extra.join(', ')+'</span></div><div class="kv"><b>Distance</b><span>About '+p.distance.toFixed(1)+' km · approximate only</span></div></div><div class="callout good">The matching concept combines shared interests, approximate area, preferences and complementary interests — not private messages or exact live location.</div><button class="btn full" style="margin-top:12px" onclick="connectPerson(\''+p.id+'\');closeModal()">Connect</button>';openModal()}
+function openPerson(id){const p=nearbyPeople.find(function(x){return x.id===id});if(!p)return;document.getElementById('modalBody').innerHTML='<div class="row gap"><div class="person-avatar">'+p.initial+'</div><div><div class="heading" style="font-size:25px;margin:0">'+p.name+'</div><div class="match-location"><svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11z"/><circle cx="12" cy="10" r="2"/></svg>'+p.area+' · approximate area</div></div></div><div class="card no-shadow"><div class="section-title">Why the algorithm suggested this person</div><div class="kv"><b>Algorithm score</b><span>'+p.score+'% prototype recommendation</span></div><div class="kv"><b>Shared</b><span>'+p.interests.join(', ')+'</span></div><div class="kv"><b>New perspective</b><span>'+p.extra.join(', ')+'</span></div><div class="kv"><b>Distance</b><span>About '+p.distance.toFixed(1)+' km · approximate only</span></div></div><div class="callout good">The matching algorithm combines shared interests, approximate area, preferences and complementary interests. It suggests a connection; it does not predict friendship or compatibility.</div><button class="btn full" style="margin-top:12px" onclick="connectPerson(\''+p.id+'\');closeModal()">Connect</button>';openModal()}
 function setExploreType(type){exploreType=type;document.getElementById('eventsPanel').classList.toggle('hidden',type!=='events');document.getElementById('placesPanel').classList.toggle('hidden',type!=='places');document.getElementById('exploreEventsBtn').classList.toggle('active',type==='events');document.getElementById('explorePlacesBtn').classList.toggle('active',type==='places');if(type==='places')renderPlaces();else renderEvents()}
 function setPlaceFilter(btn,mode){placeFilter=mode;document.querySelectorAll('#placesPanel .filter-pill').forEach(function(x){x.classList.remove('active')});btn.classList.add('active');renderPlaces()}
 function renderPlaces(){
@@ -554,7 +585,7 @@ function openEvent(id){
  <div class="card"><div class="section-title">About this event</div><p class="sub" style="color:#d7d3e9">${e.desc}</p><div class="kv"><b>Venue</b><span>${e.venue}</span></div><div class="kv"><b>Price</b><span>${e.price}</span></div><div class="kv"><b>Access</b><span>${e.access}</span></div></div>
  <div class="card"><div class="section-title">Host</div><div class="host"><div class="hostlogo">${e.host[0]}</div><div><b>${e.host}</b><div class="small">Fictional verified host for prototype demonstration</div></div></div></div>
  <div class="card"><div class="section-title">Schedule</div>${e.agenda.map(x=>`<div class="kv"><b>•</b><span>${x}</span></div>`).join('')}</div>
- <div class="card"><div class="section-title">Your group</div><div class="row between"><div class="people-stack"><div class="avatar">M</div><div class="avatar goldbg">P</div><div class="avatar lavbg">S</div><div class="avatar mintbg">Y</div></div><span class="badge mint">${e.id==='night'?'4 going':e.group}</span></div>${e.id==='night'?`<button class="btn full" style="margin-top:12px" onclick="openGroupChat('saturday')">Open group chat</button><button class="btn secondary full" style="margin-top:8px" onclick="show('find')">Find each other at event</button>`:''}</div>
+ <div class="card"><div class="section-title">Your group</div><div class="row between"><div class="people-stack"><div class="avatar">M</div><div class="avatar goldbg">P</div><div class="avatar lavbg">S</div><div class="avatar mintbg">Y</div></div><span class="badge mint">${e.id==='night'?'4 going':e.group}</span></div>${e.id==='night'?`<button class="btn full" style="margin-top:12px" onclick="openGroupChat('saturday')">Open group chat</button><button class="btn secondary full" style="margin-top:8px" onclick="show('find')">Opt in to 1-hour location sharing</button><div class="tiny" style="margin-top:8px">Location sharing is optional, starts only when you choose it, and is limited to this group.</div>`:''}</div>
  <div class="callout warn"><b>Safety:</b> ${e.safety}</div>
  <div class="row gap" style="margin-top:13px"><button class="btn secondary grow" onclick="downloadCalendar('${e.id}')">Add to calendar</button><button class="btn grow" onclick="toast('RSVP saved for ${e.name}')">${e.id==='night'?'Going ✓':'RSVP'}</button></div>`;
  show('eventDetail')
@@ -669,7 +700,7 @@ function editProfile(){const u=safeJson('mosaic_session',{name:'Alex',email:'ale
 function saveProfile(){const name=document.getElementById('editName').value.trim(),email=document.getElementById('editEmail').value.trim();if(!name||!email.includes('@')){toast('Enter a name and valid email');return}localStorage.setItem('mosaic_session',JSON.stringify({name,email}));applyUser();closeModal();toast('Profile updated')}
 function exportData(){const payload={app:'MosAIc prototype',version:'3.0',exportedAt:new Date().toISOString(),session:safeJson('mosaic_session',null),consent:safeJson('mosaic_consent',null),settings:Object.fromEntries(Object.keys(localStorage).filter(k=>k.startsWith('mosaic_setting_')).map(k=>[k,localStorage.getItem(k)])),note:'Synthetic prototype data only'};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));a.download='mosaic-prototype-data.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800)}
 function deleteAppData(){if(confirm('Delete all MosAIc prototype data stored in this browser?')){localStorage.clear();location.reload()}}
-function showAbout(){document.getElementById('modalBody').innerHTML=`<div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div><div class="heading" style="font-size:25px;margin-top:18px">From interests to real connections.</div><p class="sub">Version 5.1 advanced university prototype. MosAIc explores how user-approved interest signals could support groups, real-world events and career opportunities instead of another endless content feed.</p><div class="callout good">All people, jobs, event venues and connected-source data in this build are fictional demonstration content.</div>`;openModal()}
+function showAbout(){document.getElementById('modalBody').innerHTML=`<div class="brand"><div class="mosaic-icon"><i></i><i></i><i></i><i></i></div><span>MosAIc</span></div><div class="heading" style="font-size:25px;margin-top:18px">From interests to real connections.</div><p class="sub">Version 5.2 advanced university prototype. MosAIc explores how user-approved interest signals could support groups, real-world events and career opportunities instead of another endless content feed.</p><div class="callout good">All people, jobs, event venues and connected-source data in this build are fictional demonstration content.</div>`;openModal()}
 
 function openModal(){document.getElementById('modal').classList.add('open')}function closeModal(){document.getElementById('modal').classList.remove('open')}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),2100)}
