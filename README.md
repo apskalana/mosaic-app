@@ -3,6 +3,8 @@
 Interactive university prototype, with a static web application and an Android
 WebView application. The source was imported from the supplied MosAIc v3 archives.
 
+https://mosaic-app-kalana11.vercel.app/
+
 ## Project layout
 
 - `web/`: web application, PWA manifest, and service worker.
